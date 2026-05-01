@@ -1,0 +1,29 @@
+ MANEJO DE EXCEPCIONES
+# Estructura básica
+try:
+    resultado = 10 / 0
+except ZeroDivisionError:
+    print("No se puede dividir por cero")
+except Exception as e:
+    print(f"Error desconocido: {e}")
+else:
+    print("Todo funcionó correctamente")
+finally:
+    print("Esto siempre se ejecuta")
+
+# Lanzar excepciones
+def dividir(a, b):
+    if b == 0:
+        raise ValueError("El divisor no puede ser cero")
+    return a / b
+
+# Crear excepciones personalizadas
+class MiErrorPersonalizado(Exception):
+    pass
+
+# Múltiples excepciones
+try:
+    archivo = open("archivo.txt")
+    valor = int(archivo.read())
+except (FileNotFoundError, ValueError) as e:
+    print(f"Error de archivo o conversión: {e}")

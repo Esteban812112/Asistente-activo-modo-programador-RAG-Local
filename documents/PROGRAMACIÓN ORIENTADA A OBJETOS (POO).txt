@@ -1,0 +1,53 @@
+class Persona:
+    # Constructor
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+        self._atributo_privado = "solo interno"  # Convención privado
+        self.__atributo_privado_fuerte = "muy privado"  # Name mangling
+    
+    # Método de instancia
+    def saludar(self):
+        return f"Hola, soy {self.nombre}"
+    
+    # Método de clase
+    @classmethod
+    def desde_nacimiento(cls, nombre, año_nacimiento):
+        import datetime
+        edad = datetime.datetime.now().year - año_nacimiento
+        return cls(nombre, edad)
+    
+    # Método estático
+    @staticmethod
+    def es_mayor_de_edad(edad):
+        return edad >= 18
+    
+    # Propiedad (getter)
+    @property
+    def info(self):
+        return f"{self.nombre} ({self.edad} años)"
+    
+    # Setter
+    @info.setter
+    def info(self, valor):
+        self.nombre, self.edad = valor.split(", ")
+        self.edad = int(self.edad)
+
+# Herencia
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, carrera):
+        super().__init__(nombre, edad)
+        self.carrera = carrera
+    
+    def saludar(self):  # Sobrescritura de método
+        return f"Hola, soy {self.nombre}, estudio {self.carrera}"
+
+# Herencia múltiple
+class A:
+    pass
+
+class B:
+    pass
+
+class C(A, B):
+    pass

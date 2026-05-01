@@ -1,0 +1,14 @@
+lista = [3, 1, 4, 1, 5, 9, 2]
+
+lista.append(6)        # Agrega al final
+lista.insert(0, 0)     # Inserta en posición
+lista.remove(1)        # Elimina primera ocurrencia
+lista.pop()            # Elimina y devuelve último
+lista.pop(2)           # Elimina y devuelve índice 2
+lista.sort()           # Ordena ascendente
+lista.sort(reverse=True)  # Ordena descendente
+lista.reverse()        # Invierte orden
+len(lista)             # Longitud
+max(lista)             # Valor máximo
+min(lista)             # Valor mínimo
+sum(lista)             # Suma de elementos

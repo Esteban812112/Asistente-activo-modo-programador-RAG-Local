@@ -1,0 +1,13 @@
+comados inmportantes 
+
+show run | include username         *ver usuario y contraseña*
+show running-config                 *ver configuracion router *
+copy running-config startup-config  *guardar configuracion router *
+
+
+show ip eigrp neighbors                 *ver vecionos eigrp*
+show ip route                            *ver rutas aprendidas *
+show ip protocols                        * Ver proceso EIGR*
+show ip eigrp topology                  *Ver tabla propia de EIGRP*
+
+opsf (VyOS y MikroTik CHR) 

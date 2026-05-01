@@ -1,0 +1,17 @@
+# Sintaxis básica
+cuadrados = [x**2 for x in range(10)]
+
+# Con condición
+pares = [x for x in range(20) if x % 2 == 0]
+
+# Con condición else
+resultados = [x if x % 2 == 0 else -x for x in range(10)]
+
+# Anidados
+matriz = [[i * j for j in range(5)] for i in range(5)]
+
+# Con múltiples iterables
+pares_nones = [(x, y) for x in range(3) for y in range(3)]
+
+# Diccionarios por comprensión
+cuadrados_dict = {x: x**2 for x in range(5)}

@@ -1,0 +1,32 @@
+# List comprehension vs bucle for (más rápido)
+# Lento
+cuadrados = []
+for i in range(1000):
+    cuadrados.append(i**2)
+
+# Rápido
+cuadrados = [i**2 for i in range(1000)]
+
+# Usar join vs concatenación de strings
+# Lento
+resultado = ""
+for s in lista_strings:
+    resultado += s
+
+# Rápido
+resultado = "".join(lista_strings)
+
+# Usar sets para búsqueda rápida
+elementos_set = set([1,2,3,4,5])
+if 3 in elementos_set:  # O(1)
+    print("Encontrado")
+
+# Generadores para ahorrar memoria
+def generador_numeros(n):
+    for i in range(n):
+        yield i
+
+# Usar f-strings para formateo (Python 3.6+)
+nombre = "Ana"
+edad = 25
+mensaje = f"{nombre} tiene {edad} años"

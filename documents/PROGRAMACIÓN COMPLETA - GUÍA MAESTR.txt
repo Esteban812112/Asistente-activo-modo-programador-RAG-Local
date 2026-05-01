@@ -1,0 +1,434 @@
+PROGRAMACIÓN COMPLETA - GUÍA MAESTRA
+
+## 1. FUNDAMENTOS DE PROGRAMACIÓN
+
+### 1.1 Variables y Tipos de Datos
+Una variable es un espacio en memoria que almacena un valor que puede cambiar.
+Tipos básicos: enteros (int), decimales (float), texto (string), booleanos (bool).
+En Python: nombre = "Ana", edad = 25, altura = 1.65, activo = True
+En JavaScript: let nombre = "Ana"; const edad = 25; var activo = true;
+En Java: String nombre = "Ana"; int edad = 25; boolean activo = true;
+
+### 1.2 Estructuras de datos
+Listas/Arreglos: colección ordenada [1,2,3]
+Diccionarios/Objetos: pares clave-valor {"nombre":"Ana","edad":25}
+Conjuntos: elementos únicos {1,2,3}
+Tuplas: colección inmutable (1,2,3)
+
+### 1.3 Operadores
+Aritméticos: + (suma), - (resta), * (multiplicación), / (división), % (módulo), ** (potencia)
+Comparación: == (igual), != (diferente), < (menor), > (mayor), <= (menor o igual), >= (mayor o igual)
+Lógicos: and (y), or (o), not (no)
+Asignación: =, +=, -=, *=, /=
+
+## 2. ESTRUCTURAS DE CONTROL
+
+### 2.1 Condicionales
+if condición:
+    # código si verdadero
+elif otra_condición:
+    # código si segunda condición verdadera
+else:
+    # código si ninguna condición verdadera
+
+Operador ternario: resultado = "Mayor" if edad >= 18 else "Menor"
+Switch/Case (Python 3.10+): match valor: case 1: print("Uno")
+
+### 2.2 Bucles
+Bucle for: for elemento in colección: print(elemento)
+Bucle while: while condición: print("repite")
+Range: for i in range(10): print(i)  # 0-9
+Break: sale del bucle inmediatamente
+Continue: salta a la siguiente iteración
+
+## 3. FUNCIONES
+
+### 3.1 Definición y uso
+def nombre_funcion(parametros):
+    """Docstring - explica qué hace"""
+    # código
+    return valor
+
+Parámetros por defecto: def saludar(nombre="Mundo")
+Argumentos por nombre: saludar(nombre="Ana")
+Args (tupla): def sumar(*args): return sum(args)
+Kwargs (diccionario): def mostrar(**kwargs): print(kwargs)
+
+### 3.2 Funciones lambda
+Funciones anónimas de una línea: cuadrado = lambda x: x**2
+Uso con filter: pares = list(filter(lambda x: x%2==0, numeros))
+Uso con map: cuadrados = list(map(lambda x: x**2, numeros))
+
+### 3.3 Decoradores
+def decorador(funcion):
+    def wrapper(*args, **kwargs):
+        print("Antes de llamar")
+        resultado = funcion(*args, **kwargs)
+        print("Después de llamar")
+        return resultado
+    return wrapper
+
+@decorador
+def mi_funcion():
+    print("Ejecutando")
+
+### 3.4 Generadores
+def generador(n):
+    for i in range(n):
+        yield i  # Genera valores uno a uno, ahorrando memoria
+Uso: for valor in generador(1000000): print(valor)
+
+## 4. PROGRAMACIÓN ORIENTADA A OBJETOS (POO)
+
+### 4.1 Clases y objetos
+class Persona:
+    # Constructor
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+    
+    # Método
+    def saludar(self):
+        return f"Hola, soy {self.nombre}"
+    
+    # Método de clase
+    @classmethod
+    def desde_nacimiento(cls, nombre, año):
+        edad = 2025 - año
+        return cls(nombre, edad)
+    
+    # Método estático
+    @staticmethod
+    def es_mayor(edad):
+        return edad >= 18
+
+### 4.2 Herencia
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, carrera):
+        super().__init__(nombre, edad)
+        self.carrera = carrera
+    
+    def saludar(self):  # Sobrescritura
+        return f"Hola, soy {self.nombre}, estudio {self.carrera}"
+
+### 4.3 Encapsulamiento
+Atributo privado (convención): self._privado
+Atributo privado (name mangling): self.__muy_privado
+Property para getter/setter:
+    @property
+    def edad(self):
+        return self._edad
+    
+    @edad.setter
+    def edad(self, valor):
+        if valor >= 0:
+            self._edad = valor
+
+### 4.4 Polimorfismo
+def hacer_saludar(objeto):
+    print(objeto.saludar())  # Funciona con Persona, Estudiante, etc.
+
+### 4.5 Clases abstractas
+from abc import ABC, abstractmethod
+class Figura(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+## 5. MANEJO DE EXCEPCIONES
+
+### 5.1 Try-Except
+try:
+    resultado = 10 / 0
+except ZeroDivisionError:
+    print("No se puede dividir por cero")
+except Exception as e:
+    print(f"Error inesperado: {e}")
+else:
+    print("Todo funcionó bien")
+finally:
+    print("Siempre se ejecuta")
+
+### 5.2 Lanzar excepciones
+raise ValueError("Mensaje de error personalizado")
+assert valor > 0, "El valor debe ser positivo"
+
+### 5.3 Excepciones personalizadas
+class MiError(Exception):
+    pass
+
+## 6. ARCHIVOS Y ENTRADA/SALIDA
+
+### 6.1 Lectura y escritura
+Modos: 'r' (lectura), 'w' (escritura), 'a' (append), 'x' (creación exclusiva)
+with open("archivo.txt", "w") as f:
+    f.write("Contenido")
+
+with open("archivo.txt", "r") as f:
+    contenido = f.read()
+    lineas = f.readlines()
+
+### 6.2 Archivos CSV
+import csv
+with open("datos.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Nombre", "Edad"])
+    writer.writerow(["Ana", 25])
+
+with open("datos.csv", "r") as f:
+    reader = csv.reader(f)
+    for fila in reader:
+        print(fila)
+
+### 6.3 JSON
+import json
+datos = {"nombre": "Ana", "edad": 25}
+with open("datos.json", "w") as f:
+    json.dump(datos, f)
+with open("datos.json", "r") as f:
+    datos = json.load(f)
+
+## 7. SQL Y BASES DE DATOS
+
+### 7.1 Consultas básicas
+SELECT columna1, columna2 FROM tabla WHERE condición
+SELECT * FROM usuarios WHERE edad >= 18
+SELECT DISTINCT ciudad FROM usuarios
+SELECT * FROM usuarios ORDER BY nombre DESC
+SELECT * FROM usuarios LIMIT 10
+
+### 7.2 Joins
+INNER JOIN: solo registros que coinciden
+LEFT JOIN: todos los de izquierda, coincidan o no
+RIGHT JOIN: todos los de derecha, coincidan o no
+FULL JOIN: todos los registros de ambas
+SELF JOIN: unir tabla consigo misma
+
+### 7.3 Agregaciones
+COUNT(*) - contar registros
+SUM(columna) - sumar valores
+AVG(columna) - promedio
+MAX(columna) - máximo
+MIN(columna) - mínimo
+GROUP BY columna - agrupar resultados
+HAVING condición - filtrar grupos
+
+### 7.4 Subconsultas
+SELECT * FROM tabla WHERE columna IN (SELECT columna FROM otra_tabla)
+SELECT * FROM tabla WHERE EXISTS (SELECT 1 FROM otra_tabla WHERE condición)
+
+### 7.5 Creación y modificación
+CREATE TABLE nombre (columna TIPO, PRIMARY KEY (columna))
+INSERT INTO tabla (col1, col2) VALUES (val1, val2)
+UPDATE tabla SET columna = valor WHERE condición
+DELETE FROM tabla WHERE condición
+ALTER TABLE tabla ADD COLUMN nueva_columna TIPO
+
+### 7.6 Transacciones
+START TRANSACTION
+COMMIT - guardar cambios
+ROLLBACK - deshacer cambios
+SAVEPOINT nombre - punto de guardado
+
+## 8. ALGORITMOS Y ESTRUCTURAS DE DATOS
+
+### 8.1 Complejidad algorítmica
+O(1) - constante (acceso a array)
+O(log n) - logarítmico (búsqueda binaria)
+O(n) - lineal (recorrido simple)
+O(n log n) - linealítmico (ordenamiento eficiente)
+O(n²) - cuadrático (bucles anidados)
+O(2^n) - exponencial (Fibonacci recursivo)
+
+### 8.2 Búsqueda binaria
+def busqueda_binaria(arr, objetivo):
+    izquierda, derecha = 0, len(arr)-1
+    while izquierda <= derecha:
+        medio = (izquierda + derecha) // 2
+        if arr[medio] == objetivo:
+            return medio
+        elif arr[medio] < objetivo:
+            izquierda = medio + 1
+        else:
+            derecha = medio - 1
+    return -1
+
+### 8.3 Ordenamiento burbuja
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+### 8.4 Recursividad
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n-1)
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+## 9. ESTRUCTURAS DE DATOS AVANZADAS
+
+### 9.1 Pilas (Stack)
+LIFO - Last In, First Out
+stack = []
+stack.append(1)  # push
+elemento = stack.pop()  # pop
+
+### 9.2 Colas (Queue)
+FIFO - First In, First Out
+from collections import deque
+cola = deque()
+cola.append(1)  # encolar
+elemento = cola.popleft()  # desencolar
+
+### 9.3 Árboles
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierda = None
+        self.derecha = None
+
+Recorridos: inorden (izq, raíz, der), preorden (raíz, izq, der), postorden (izq, der, raíz)
+
+### 9.4 Grafos
+Representación: lista de adyacencia, matriz de adyacencia
+BFS (amplitud): usa cola
+DFS (profundidad): usa pila o recursión
+
+## 10. GIT Y CONTROL DE VERSIONES
+
+### 10.1 Comandos básicos
+git init - iniciar repositorio
+git clone url - clonar repositorio
+git add archivo - agregar archivo al staging
+git commit -m "mensaje" - guardar cambios
+git push - subir cambios
+git pull - bajar cambios
+git status - ver estado
+git log - ver historial
+
+### 10.2 Ramas (branches)
+git branch nombre - crear rama
+git checkout nombre - cambiar a rama
+git merge nombre - fusionar rama
+git branch -d nombre - eliminar rama
+git branch -a - ver todas las ramas
+
+### 10.3 Funcionamiento
+Working Directory → Staging Area → Repository
+git diff - ver cambios
+git reset archivo - sacar del staging
+git checkout -- archivo - revertir cambios
+
+## 11. PROGRAMACIÓN WEB
+
+### 11.1 HTML básico
+<!DOCTYPE html>
+<html>
+<head><title>Mi web</title></head>
+<body>
+<h1>Encabezado</h1>
+<p>Párrafo</p>
+<a href="url">Enlace</a>
+<img src="imagen.jpg" alt="descripción">
+<ul><li>Lista</li></ul>
+<div>Contenedor</div>
+<form><input type="text" name="nombre"></form>
+</body>
+</html>
+
+### 11.2 CSS básico
+Selector { propiedad: valor; }
+#id { color: red; }  - selector por ID
+.clase { font-size: 16px; } - selector por clase
+elemento { margin: 10px; } - selector por etiqueta
+@media (max-width: 600px) {} - responsive
+
+### 11.3 JavaScript básico
+let nombre = "Ana"
+const edad = 25
+function saludar() { return "Hola" }
+document.getElementById("id")
+document.querySelector(".clase")
+fetch('api.com').then(response => response.json())
+localStorage.setItem("clave", "valor")
+
+## 12. CONCEPTOS DE RAG (RETRIEVAL-AUGMENTED GENERATION)
+
+### 12.1 Qué es RAG
+RAG combina búsqueda de información con generación de IA.
+Pasos: 1) Usuario pregunta, 2) Buscar documentos relevantes, 3) Crear contexto, 4) IA responde basada en contexto
+Ventajas: respuestas precisas, fuentes verificables, información actualizada
+
+### 12.2 Componentes clave
+Embeddings: vectores numéricos que representan texto
+Chunking: dividir documentos en fragmentos pequeños (500-1000 caracteres)
+Vector DB: base de datos que guarda y busca vectores
+Similitud coseno: mide qué tan similar es un texto a otro
+Top-K: número de fragmentos relevantes a recuperar (3-5)
+
+### 12.3 Implementación práctica
+from sentence_transformers import SentenceTransformer
+modelo = SentenceTransformer('all-MiniLM-L6-v2')
+embedding = modelo.encode("texto a vectorizar")
+similitud = cosine_similarity(vector1, vector2)
+
+## 13. BUENAS PRÁCTICAS DE PROGRAMACIÓN
+
+### 13.1 Código limpio
+Nombres descriptivos: calcular_area() en lugar of ca()
+Funciones pequeñas (máximo 20 líneas)
+Un propósito por función
+Comentarios solo cuando es necesario
+DRY (Don't Repeat Yourself)
+KISS (Keep It Simple, Stupid)
+
+### 13.2 Principios SOLID
+S - Single Responsibility: una clase hace una cosa
+O - Open/Closed: abierto a extensión, cerrado a modificación
+L - Liskov Substitution: subtipos reemplazables
+I - Interface Segregation: interfaces específicas
+D - Dependency Inversion: depender de abstracciones
+
+### 13.3 Testing
+Unit tests: probar unidades individuales
+Integration tests: probar interacciones
+Test-Driven Development: escribir test antes del código
+assert expected == actual
+
+## 14. EJEMPLOS PRÁCTICOS
+
+### 14.1 API REST con Python/Flask
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+@app.route('/api/users', methods=['GET'])
+def get_users():
+    return jsonify({"users": [{"id":1,"name":"Ana"}]})
+app.run()
+
+### 14.2 Web scraping
+import requests
+from bs4 import BeautifulSoup
+response = requests.get('https://sitio.com')
+soup = BeautifulSoup(response.text, 'html.parser')
+titulos = soup.find_all('h1')
+
+### 14.3 Expresiones regulares
+import re
+email_valido = re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', 'correo@email.com')
+numeros = re.findall(r'\d+', 'Mi edad es 25 años')
+
+### 14.4 Hilos y concurrencia
+import threading
+def tarea():
+    print("Ejecutando en hilo")
+hilo = threading.Thread(target=tarea)
+hilo.start()
+hilo.join()

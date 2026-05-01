@@ -1,0 +1,38 @@
+ Bucle for con range()
+for i in range(5):      # 0,1,2,3,4
+    print(i)
+
+for i in range(2, 8):   # 2,3,4,5,6,7
+    print(i)
+
+for i in range(0, 10, 2):  # 0,2,4,6,8
+    print(i)
+
+# Bucle for con listas
+frutas = ["manzana", "banana", "cereza"]
+for fruta in frutas:
+    print(f"Me gusta la {fruta}")
+
+# Con enumerate (índice y valor)
+for indice, fruta in enumerate(frutas):
+    print(f"{indice}: {fruta}")
+
+# Con zip (múltiples listas)
+nombres = ["Ana", "Juan", "Maria"]
+edades = [25, 30, 28]
+for nombre, edad in zip(nombres, edades):
+    print(f"{nombre} tiene {edad} años")
+
+# Bucle while
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1
+
+# Break y continue
+for i in range(10):
+    if i == 5:
+        break        # Sale del bucle
+    if i % 2 == 0:
+        continue     # Salta a la siguiente iteración
+    print(i)

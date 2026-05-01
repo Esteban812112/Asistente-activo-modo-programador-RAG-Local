@@ -1,0 +1,16 @@
+diccionario = {"a": 1, "b": 2, "c": 3}
+
+diccionario.keys()     # Obtener claves
+diccionario.values()   # Obtener valores
+diccionario.items()    # Obtener pares (clave, valor)
+diccionario.get("d", 0)  # Obtener con valor por defecto
+diccionario.update({"d": 4})  # Actualizar múltiples
+diccionario.pop("a")   # Eliminar y devolver
+diccionario.popitem()  # Eliminar y devolver último
+
+# Recorrer diccionarios
+for clave in diccionario:
+    print(clave, diccionario[clave])
+
+for clave, valor in diccionario.items():
+    print(f"{clave}: {valor}")

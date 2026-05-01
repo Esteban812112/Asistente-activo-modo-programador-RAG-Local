@@ -1,0 +1,23 @@
+import re
+
+def validar_contraseña(contraseña):
+    """
+    Valida que la contraseña cumpla con:
+    - Mínimo 8 caracteres
+    - Al menos una mayúscula
+    - Al menos un número
+    - Al menos un caracter especial
+    """
+    if len(contraseña) < 8:
+        return False, "Mínimo 8 caracteres"
+    
+    if not re.search(r"[A-Z]", contraseña):
+        return False, "Al menos una mayúscula"
+    
+    if not re.search(r"[0-9]", contraseña):
+        return False, "Al menos un número"
+    
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", contraseña):
+        return False, "Al menos un caracter especial"
+    
+    return True, "Contraseña válida"

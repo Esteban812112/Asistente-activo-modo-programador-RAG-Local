@@ -1,0 +1,36 @@
+Python
+---
+
+### 2. `sql_completo.txt`
+
+```markdown
+# SQL - GUÍA COMPLETA DE BASES DE DATOS
+
+## 1. FUNDAMENTOS DE SQL
+
+### 1.1 Tipos de Datos SQL
+
+```sql
+-- Numéricos
+INT, SMALLINT, TINYINT, BIGINT    -- Enteros
+DECIMAL(p,s), NUMERIC(p,s)         -- Decimales precisos
+FLOAT, REAL                        -- Decimales aproximados
+
+-- Cadenas
+CHAR(n)        -- Longitud fija
+VARCHAR(n)     -- Longitud variable
+TEXT           -- Texto largo
+
+-- Fechas y tiempos
+DATE           -- YYYY-MM-DD
+TIME           -- HH:MM:SS
+DATETIME       -- YYYY-MM-DD HH:MM:SS
+TIMESTAMP      -- Fecha y hora con zona horaria
+
+-- Booleanos
+BOOLEAN        -- TRUE/FALSE
+
+-- Otros
+BLOB           -- Datos binarios
+JSON           -- Datos JSON
+XML            -- Datos XML

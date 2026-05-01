@@ -1,0 +1,25 @@
+class GestorTareas:
+    def __init__(self):
+        self.tareas = []
+    
+    def agregar_tarea(self, titulo, descripcion=""):
+        tarea = {
+            "id": len(self.tareas) + 1,
+            "titulo": titulo,
+            "descripcion": descripcion,
+            "completada": False
+        }
+        self.tareas.append(tarea)
+        return tarea
+    
+    def completar_tarea(self, tarea_id):
+        for tarea in self.tareas:
+            if tarea["id"] == tarea_id:
+                tarea["completada"] = True
+                return True
+        return False
+    
+    def listar_tareas(self, solo_pendientes=False):
+        if solo_pendientes:
+            return [t for t in self.tareas if not t["completada"]]
+        return self.tareas

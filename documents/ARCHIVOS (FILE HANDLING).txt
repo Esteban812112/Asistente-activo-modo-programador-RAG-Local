@@ -1,0 +1,35 @@
+# Escribir archivo
+with open("archivo.txt", "w") as f:
+    f.write("Línea 1\n")
+    f.write("Línea 2\n")
+
+# Leer archivo completo
+with open("archivo.txt", "r") as f:
+    contenido = f.read()
+
+# Leer línea por línea
+with open("archivo.txt", "r") as f:
+    for linea in f:
+        print(linea.strip())
+
+# Modos de apertura
+# "r"  - lectura (default)
+# "w"  - escritura (sobrescribe)
+# "a"  - append (agrega al final)
+# "x"  - creación exclusiva
+# "b"  - modo binario
+# "t"  - modo texto (default)
+# "+"  - lectura y escritura
+
+# Archivos CSV
+import csv
+
+with open("datos.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Nombre", "Edad"])
+    writer.writerow(["Ana", 25])
+
+with open("datos.csv", "r") as f:
+    reader = csv.reader(f)
+    for fila in reader:
+        print(fila)

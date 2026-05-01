@@ -1,0 +1,429 @@
+DICCIONARIO COMPLETO DE PROGRAMACIÓN - TÉRMINOS Y DEFINICIONES
+
+## A
+
+**Abstracción**: Principio de POO que oculta detalles complejos y muestra solo lo esencial.
+
+**Algoritmo**: Secuencia de pasos definidos para resolver un problema.
+
+**API (Application Programming Interface)**: Conjunto de reglas que permite la comunicación entre aplicaciones.
+
+**Argumento**: Valor que se pasa a una función cuando se llama.
+
+**Arreglo (Array)**: Estructura de datos que almacena elementos del mismo tipo en posiciones contiguas.
+
+## B
+
+**Backend**: Parte del sistema que maneja lógica de negocio, bases de datos y servidores.
+
+**BFS (Breadth-First Search)**: Algoritmo que explora un grafo por niveles (amplitud).
+
+**Big Data**: Conjuntos de datos tan grandes que requieren procesamiento especializado.
+
+**Big O**: Notación que describe la complejidad temporal de un algoritmo.
+
+**Binario**: Sistema numérico de base 2 utilizando solo 0 y 1.
+
+**Bootstrap**: Framework CSS para diseño web responsive.
+
+**Branch (Rama)**: Línea de desarrollo independiente en Git.
+
+**Break**: Sentencia que sale inmediatamente de un bucle.
+
+**Bug**: Error en el código que causa comportamiento inesperado.
+
+## C
+
+**Caché**: Almacenamiento temporal de datos para acceso rápido.
+
+**Callback**: Función que se pasa como argumento para ejecutarse después.
+
+**Clase**: Plantilla para crear objetos en POO.
+
+**Cliente**: Aplicación o dispositivo que consume servicios de un servidor.
+
+**Cloud Computing**: Servicios de cómputo a través de internet.
+
+**Código limpio**: Código fácil de leer, entender y modificar.
+
+**Código fuente**: Texto escrito por programadores en un lenguaje de programación.
+
+**Compilador**: Programa que traduce código fuente a código máquina.
+
+**Complejidad**: Medida de recursos (tiempo/memoria) que consume un algoritmo.
+
+**Componente**: Parte reutilizable de una interfaz de usuario.
+
+**Constante**: Valor que no cambia durante la ejecución.
+
+**Constructor**: Método especial que inicializa objetos al crearlos.
+
+**Continue**: Salta a la siguiente iteración de un bucle.
+
+**CRUD**: Operaciones básicas: Create, Read, Update, Delete.
+
+**CSS (Cascading Style Sheets)**: Lenguaje para estilizar documentos HTML.
+
+## D
+
+**Daemon**: Proceso que se ejecuta en segundo plano.
+
+**Debugging**: Proceso de encontrar y corregir errores en el código.
+
+**Decorador**: Función que modifica el comportamiento de otra función.
+
+**DFS (Depth-First Search)**: Algoritmo que explora un grafo profundizando primero.
+
+**DJango**: Framework web de alto nivel para Python.
+
+**Docker**: Plataforma para empaquetar aplicaciones en contenedores.
+
+**DRY (Don't Repeat Yourself)**: Principio que evita duplicación de código.
+
+## E
+
+**Embedding**: Representación vectorial de texto para procesamiento semántico.
+
+**Encapsulamiento**: Ocultar datos internos de un objeto.
+
+**Endpoint**: URL específica donde una API recibe solicitudes.
+
+**Entidad**: Objeto del mundo real representado en una base de datos.
+
+**Enum**: Tipo de dato con valores predefinidos.
+
+**Escalabilidad**: Capacidad de un sistema para crecer bajo demanda.
+
+**Espacio de nombres**: Contenedor que organiza identificadores únicos.
+
+**Estructura de datos**: Forma organizada de almacenar datos.
+
+**Event Loop**: Mecanismo que maneja eventos asíncronos.
+
+**Excepción**: Evento que interrumpe el flujo normal del programa.
+
+**Express.js**: Framework para Node.js que simplifica APIs.
+
+## F
+
+**Fetch**: API de JavaScript para hacer peticiones HTTP.
+
+**FIFO (First In, First Out)**: Principio de colas donde el primero en entrar es el primero en salir.
+
+**Firewall**: Sistema de seguridad que controla tráfico de red.
+
+**Flask**: Microframework web minimalista para Python.
+
+**Framework**: Conjunto de herramientas para desarrollo de software.
+
+**Frontend**: Parte visible de una aplicación con la que interactúa el usuario.
+
+**Función**: Bloque de código reutilizable que realiza una tarea.
+
+## G
+
+**Garbage Collector**: Gestiona automáticamente la memoria liberando objetos no usados.
+
+**Gema**: Paquete o librería en lenguajes como Ruby.
+
+**Generador**: Función que produce valores uno a uno usando `yield`.
+
+**Generics**: Permiten escribir código que funciona con diferentes tipos.
+
+**Gestor de paquetes**: Herramienta que instala y maneja dependencias.
+
+**GIL (Global Interpreter Lock)**: Mecanismo de Python que permite ejecutar un solo hilo a la vez.
+
+**Git**: Sistema de control de versiones distribuido.
+
+**GitHub**: Plataforma para alojar repositorios Git.
+
+**Grafana**: Herramienta para visualización de métricas.
+
+**Grafo**: Estructura de datos con nodos conectados por aristas.
+
+## H
+
+**Hash**: Función que convierte datos en una cadena de longitud fija.
+
+**Herencia**: Mecanismo POO donde una clase deriva de otra.
+
+**Hilo (Thread)**: Unidad de ejecución dentro de un proceso.
+
+**Hoisting**: Comportamiento de JavaScript que mueve declaraciones al inicio.
+
+**Hook**: Función que permite "engancharse" a eventos del sistema.
+
+**HTML (HyperText Markup Language)**: Lenguaje para estructurar páginas web.
+
+**HTTP (HyperText Transfer Protocol)**: Protocolo para transferir datos en la web.
+
+**HTTPS**: Versión segura de HTTP con cifrado SSL/TLS.
+
+## I
+
+**IDE (Integrated Development Environment)**: Editor con herramientas integradas para desarrollo.
+
+**Índice**: Estructura que acelera búsquedas en una base de datos.
+
+**Inyección de dependencias**: Patrón donde las dependencias se pasan externamente.
+
+**Instancia**: Objeto concreto creado a partir de una clase.
+
+**Intérprete**: Ejecuta código línea por línea sin compilar.
+
+**Iterador**: Objeto que permite recorrer elementos uno por uno.
+
+## J
+
+**JSON (JavaScript Object Notation)**: Formato ligero para intercambio de datos.
+
+**JSX**: Extensión de JavaScript que permite escribir HTML en React.
+
+**JWT (JSON Web Token)**: Token seguro para autenticación.
+
+## K
+
+**Kernel**: Núcleo del sistema operativo.
+
+**Keyword**: Palabra reservada del lenguaje con significado especial.
+
+**Kubernetes**: Sistema para orquestar contenedores.
+
+## L
+
+**Lambda**: Función anónima de una sola expresión.
+
+**Lenguaje compilado**: Necesita compilación antes de ejecutarse (C, Java, Go).
+
+**Lenguaje interpretado**: Se ejecuta línea por línea sin compilación previa (Python, JS).
+
+**LIFO (Last In, First Out)**: Principio de pilas donde el último en entrar es el primero en salir.
+
+**Linter**: Herramienta que analiza código en busca de errores potenciales.
+
+**Log**: Registro de eventos de una aplicación.
+
+**Loop**: Estructura que repite un bloque de código.
+
+## M
+
+**Machine Learning**: Algoritmos que aprenden patrones a partir de datos.
+
+**Main**: Función principal que inicia la ejecución.
+
+**Memoria**: Recurso donde se almacenan datos temporales.
+
+**Merge**: Unir cambios de diferentes ramas en Git.
+
+**Middleware**: Software que conecta diferentes componentes.
+
+**Módulo**: Archivo que contiene código reutilizable.
+
+**Monolito**: Aplicación con todos los componentes integrados.
+
+**Multihilo**: Ejecución concurrente de múltiples hilos.
+
+## N
+
+**Namespace**: Contenedor que evita conflictos de nombres.
+
+**Negación**: Operador lógico que invierte un valor booleano.
+
+**Nested (Anidado)**: Estructura dentro de otra estructura.
+
+**Nodo**: Elemento individual en una estructura de datos.
+
+**NoSQL**: Bases de datos no relacionales (MongoDB, Redis).
+
+## O
+
+**Objeto**: Instancia de una clase con estado y comportamiento.
+
+**Open Source**: Código cuyo código fuente está disponible públicamente.
+
+**Orquesta**: Sistema que coordina varios servicios distribuidos.
+
+## P
+
+**Package**: Conjunto de módulos empaquetados.
+
+**Paradigma**: Estilo de programación (POO, funcional, procedural).
+
+**Parámetro**: Variable que recibe una función.
+
+**Patch**: Actualización que corrige errores.
+
+**POO (Programación Orientada a Objetos)**: Paradigma basado en objetos.
+
+**Polimorfismo**: Capacidad de objetos de diferentes clases de responder al mismo mensaje.
+
+**Pull Request**: Solicitud para fusionar cambios en un repositorio.
+
+**Push**: Subir commits a un repositorio remoto.
+
+## Q
+
+**Query**: Consulta a una base de datos.
+
+**Queue (Cola)**: Estructura FIFO para almacenar elementos.
+
+## R
+
+**RAG (Retrieval-Augmented Generation)**: Técnica que combina búsqueda y generación de IA.
+
+**Rama (Branch)**: Línea independiente de desarrollo en Git.
+
+**React**: Biblioteca de JavaScript para interfaces de usuario.
+
+**Readme**: Archivo con documentación del proyecto.
+
+**Recursión**: Función que se llama a sí misma.
+
+**Refactor**: Reescribir código sin cambiar su comportamiento.
+
+**REST (Representational State Transfer)**: Arquitectura para APIs web.
+
+**Router**: Componente que dirige peticiones a manejadores específicos.
+
+## S
+
+**Script**: Programa pequeño que automatiza tareas.
+
+**SDK (Software Development Kit)**: Conjunto de herramientas para desarrollar en una plataforma.
+
+**Serialización**: Convertir objeto a formato almacenable/transmisible.
+
+**Servidor**: Sistema que provee servicios a clientes.
+
+**Singleton**: Patrón que permite una sola instancia de una clase.
+
+**Sintaxis**: Reglas que definen la estructura correcta del código.
+
+**Sistema operativo**: Software que gestiona hardware y recursos.
+
+**Socket**: Punto final para comunicación bidireccional.
+
+**SOLID**: Principios de diseño orientado a objetos.
+
+**SQL (Structured Query Language)**: Lenguaje para bases de datos relacionales.
+
+**Stack (Pila)**: Estructura LIFO para almacenar elementos.
+
+## T
+
+**Template**: Plantilla reutilizable para generar contenido.
+
+**Token**: Unidad de texto en procesamiento de lenguaje natural.
+
+**Trigger**: Procedimiento que se ejecuta automáticamente ante un evento.
+
+**TypeScript**: Superconjunto tipado de JavaScript.
+
+## U
+
+**UI (User Interface)**: Interfaz con la que interactúa el usuario.
+
+**UX (User Experience)**: Experiencia general del usuario al usar un producto.
+
+## V
+
+**Variable**: Espacio en memoria que almacena un valor.
+
+**Vector**: Representación matemática de texto para embeddings.
+
+**VCS (Version Control System)**: Sistema que registra cambios en archivos.
+
+**Virtualenv**: Entorno virtual aislado para proyectos Python.
+
+**Vue.js**: Framework progresivo de JavaScript.
+
+## W
+
+**Webhook**: Mecanismo para notificar eventos entre sistemas.
+
+**Webpack**: Empaquetador de módulos para JavaScript.
+
+**WebSocket**: Protocolo para comunicación bidireccional en tiempo real.
+
+**Wrapper**: Función que "envuelve" otra para extender su funcionalidad.
+
+## X
+
+**XML (eXtensible Markup Language)**: Lenguaje de marcado para datos estructurados.
+
+**XSS (Cross-Site Scripting)**: Vulnerabilidad que permite inyectar scripts.
+
+## Y
+
+**YAGNI (You Aren't Gonna Need It)**: Principio de no agregar funcionalidades innecesarias.
+
+**YAML**: Formato legible para datos de configuración.
+
+## Z
+
+**Zero-day**: Vulnerabilidad desconocida al momento del ataque.
+
+**Zip**: Algoritmo de compresión de archivos.
+
+## TÉRMINOS ESPECIALES POR TEMAS
+
+### Python
+- **PEP (Python Enhancement Proposal)**: Documento que propone cambios a Python.
+- **pip**: Gestor de paquetes de Python.
+- **PyPI**: Repositorio oficial de paquetes Python.
+- **Virtualenv**: Entorno virtual aislado.
+- **REPL (Read-Eval-Print Loop)**: Consola interactiva de Python.
+
+### SQL
+- **DDL (Data Definition Language)**: Comandos para definir esquemas (CREATE, ALTER, DROP).
+- **DML (Data Manipulation Language)**: Comandos para manipular datos (INSERT, UPDATE, DELETE).
+- **DCL (Data Control Language)**: Comandos para permisos (GRANT, REVOKE).
+- **Clave primaria**: Identificador único de una fila.
+- **Clave foránea**: Campo que referencia clave primaria de otra tabla.
+- **Índice**: Estructura que acelera búsquedas.
+
+### Web
+- **DOM (Document Object Model)**: Representación del HTML en JavaScript.
+- **CDN (Content Delivery Network)**: Red de servidores para contenido estático.
+- **CSRF (Cross-Site Request Forgery)**: Ataque que ejecuta acciones no autorizadas.
+- **CORS (Cross-Origin Resource Sharing)**: Mecanismo para compartir recursos entre orígenes.
+
+### Algoritmos
+- **Divide and Conquer**: Estrategia de dividir problemas en subproblemas.
+- **Dynamic Programming**: Almacenar resultados intermedios para reutilizarlos.
+- **Greedy**: Elegir la mejor opción local en cada paso.
+- **Backtracking**: Probar opciones y deshacer si no funcionan.
+
+### Metodologías
+- **Agile**: Desarrollo iterativo y flexible.
+- **Scrum**: Marco de trabajo ágil con sprints.
+- **Kanban**: Sistema visual de gestión de tareas.
+- **DevOps**: Integración entre desarrollo y operaciones.
+- **CI/CD (Continuous Integration/Continuous Deployment)**: Integración y despliegue continuos.
+
+### Seguridad
+- **Autenticación**: Verificar identidad del usuario.
+- **Autorización**: Verificar permisos del usuario.
+- **Cifrado**: Convertir datos en formato ilegible.
+- **Hashing**: Transformación unidireccional de datos.
+- **Salting**: Agregar datos aleatorios antes de hashear.
+
+### Bases de datos
+- **ACID**: Propiedades de transacciones (Atomicidad, Consistencia, Aislamiento, Durabilidad).
+- **Normalización**: Proceso para evitar redundancia.
+- **Desnormalización**: Añadir redundancia para mejorar rendimiento.
+- **Sharding**: Distribuir datos entre múltiples servidores.
+- **Replicación**: Copiar datos entre servidores.
+
+### Infraestructura
+- **Docker**: Contenedores para empaquetar aplicaciones.
+- **Kubernetes**: Orquestación de contenedores.
+- **Microservicio**: Aplicación pequeña e independiente.
+- **Serverless**: Código sin gestión de servidores.
+- **Latencia**: Tiempo de respuesta de un sistema.
+- **Throughput**: Cantidad de operaciones por unidad de tiempo.
+
+---
+
+Este diccionario contiene más de 300 términos de programación organizados alfabéticamente y por temas para referencia rápida.

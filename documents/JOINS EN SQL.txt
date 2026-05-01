@@ -1,0 +1,40 @@
+JOINS EN SQL
+
+Un JOIN en SQL es una operación que permite combinar información
+de dos o más tablas relacionadas mediante una columna en común.
+
+Los JOIN son fundamentales en bases de datos relacionales
+porque permiten consultar información distribuida
+en diferentes tablas.
+
+TIPOS DE JOIN:
+
+1. INNER JOIN
+Devuelve solo los registros que tienen coincidencias
+en ambas tablas.
+
+Ejemplo:
+
+SELECT usuarios.nombre, pedidos.id
+FROM usuarios
+INNER JOIN pedidos
+ON usuarios.id = pedidos.usuario_id;
+
+2. LEFT JOIN
+Devuelve todos los registros de la tabla izquierda
+aunque no tengan coincidencias en la tabla derecha.
+
+3. RIGHT JOIN
+Devuelve todos los registros de la tabla derecha.
+
+4. FULL OUTER JOIN
+Devuelve todos los registros de ambas tablas.
+
+5. CROSS JOIN
+Genera el producto cartesiano entre tablas.
+
+6. SELF JOIN
+Une una tabla consigo misma.
+
+Los JOIN ayudan a relacionar datos
+de manera eficiente en SQL.

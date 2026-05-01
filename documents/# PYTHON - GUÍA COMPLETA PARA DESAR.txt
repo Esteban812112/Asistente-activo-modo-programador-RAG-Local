@@ -1,0 +1,41 @@
+# PYTHON - GUÍA COMPLETA PARA DESARROLLADORES
+
+## 1. FUNDAMENTOS DE PYTHON
+
+### 1.1 Variables y Tipos de Datos
+Python es un lenguaje de tipado dinámico. Las variables no necesitan declaración de tipo.
+
+```python
+# Enteros (int)
+edad = 25
+poblacion = 1000000
+
+# Flotantes (float)
+precio = 19.99
+pi = 3.14159
+
+# Cadenas (str)
+nombre = "Juan Pérez"
+mensaje = 'Hola Mundo'
+
+# Booleanos (bool)
+es_mayor = True
+es_valido = False
+
+# Listas (list) - Mutables
+frutas = ["manzana", "banana", "cereza"]
+numeros = [1, 2, 3, 4, 5]
+
+# Tuplas (tuple) - Inmutables
+coordenadas = (10, 20)
+colores_rgb = (255, 0, 0)
+
+# Diccionarios (dict) - Pares clave-valor
+persona = {
+    "nombre": "Ana",
+    "edad": 30,
+    "ciudad": "Madrid"
+}
+
+# Conjuntos (set) - Elementos únicos
+unique_numeros = {1, 2, 3, 4, 5}

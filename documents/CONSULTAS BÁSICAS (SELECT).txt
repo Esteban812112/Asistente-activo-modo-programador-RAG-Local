@@ -1,0 +1,15 @@
+-- Seleccionar todas las columnas
+SELECT * FROM usuarios;
+
+-- Seleccionar columnas específicas
+SELECT nombre, email FROM usuarios;
+
+-- Con alias
+SELECT nombre AS NombreCompleto, email AS Correo FROM usuarios;
+
+-- Seleccionar sin duplicados
+SELECT DISTINCT ciudad FROM usuarios;
+
+-- Limitar resultados
+SELECT * FROM usuarios LIMIT 10;
+SELECT * FROM usuarios LIMIT 10 OFFSET 20;  -- Página 3 (20-29)

@@ -1,0 +1,28 @@
+-- INNER JOIN (solo registros que coinciden)
+SELECT u.nombre, p.fecha, p.total
+FROM usuarios u
+INNER JOIN pedidos p ON u.id = p.usuario_id;
+
+-- LEFT JOIN (todos los usuarios, con o sin pedidos)
+SELECT u.nombre, COUNT(p.id) as total_pedidos
+FROM usuarios u
+LEFT JOIN pedidos p ON u.id = p.usuario_id
+GROUP BY u.id;
+
+-- RIGHT JOIN (todos los pedidos, con o sin usuario)
+SELECT u.nombre, p.id, p.total
+FROM usuarios u
+RIGHT JOIN pedidos p ON u.id = p.usuario_id;
+
+-- FULL OUTER JOIN (todos los registros de ambas)
+SELECT u.nombre, p.id
+FROM usuarios u
+FULL OUTER JOIN pedidos p ON u.id = p.usuario_id;
+
+-- CROSS JOIN (producto cartesiano)
+SELECT * FROM usuarios CROSS JOIN productos;
+
+-- Self JOIN (unir tabla consigo misma)
+SELECT e1.nombre AS empleado, e2.nombre AS jefe
+FROM empleados e1
+LEFT JOIN empleados e2 ON e1.jefe_id = e2.id;

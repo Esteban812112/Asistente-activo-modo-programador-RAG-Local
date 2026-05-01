@@ -1,0 +1,28 @@
+# Importar módulos completos
+import math
+import datetime
+import random
+
+# Importar funciones específicas
+from math import sqrt, pi
+from datetime import datetime as dt
+
+# Importar todo (no recomendado)
+from os import *
+
+# Crear módulos (archivo .py con funciones)
+# mi_modulo.py
+def funcion_util():
+    return "Útil"
+
+# Usar módulo creado
+import mi_modulo
+
+# Paquetes (carpetas con __init__.py)
+# mi_paquete/
+#     __init__.py
+#     modulo1.py
+#     modulo2.py
+
+# Instalar paquetes externos
+# pip install nombre_paquete

@@ -1,0 +1,47 @@
+# Función básica
+def saludar(nombre):
+    return f"Hola {nombre}"
+
+# Parámetros por defecto
+def saludar_con_edad(nombre, edad=18):
+    return f"{nombre} tiene {edad} años"
+
+ Argumentos por nombre
+saludar_con_edad(edad=25, nombre="Ana")
+
+# Número variable de argumentos
+def sumar_todos(*args):
+    return sum(args)
+
+def mostrar_info(**kwargs):
+    for clave, valor in kwargs.items():
+        print(f"{clave}: {valor}")
+
+# Funciones lambda (anónimas)
+cuadrado = lambda x: x ** 2
+pares = list(filter(lambda x: x % 2 == 0, [1,2,3,4,5]))
+
+# Documentación de funciones
+def calcular_area_circulo(radio):
+    """
+    Calcula el área de un círculo.
+    
+    Args:
+        radio (float): Radio del círculo
+        
+    Returns:
+        float: Área del círculo
+        
+    Ejemplo:
+        >>> calcular_area_circulo(5)
+        78.53981633974483
+    """
+    import math
+    return math.pi * radio ** 2
+
+# Alcance de variables
+variable_global = 10
+
+def modificar_global():
+    global variable_global
+    variable_global = 20

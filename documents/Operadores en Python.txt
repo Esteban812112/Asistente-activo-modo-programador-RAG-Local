@@ -1,0 +1,28 @@
+# Aritméticos
+suma = 10 + 5        # 15
+resta = 10 - 5       # 5
+multiplicacion = 10 * 5   # 50
+division = 10 / 5    # 2.0
+division_entera = 10 // 3  # 3
+modulo = 10 % 3      # 1
+potencia = 2 ** 3    # 8
+
+# Comparación
+igual = 5 == 5       # True
+diferente = 5 != 3   # True
+mayor = 10 > 5       # True
+menor = 3 < 7        # True
+mayor_igual = 5 >= 5 # True
+menor_igual = 3 <= 4 # True
+
+# Lógicos
+and_logico = True and False  # False
+or_logico = True or False     # True
+not_logico = not True         # False
+
+# Asignación
+x = 5
+x += 3   # x = x + 3
+x -= 2   # x = x - 2
+x *= 4   # x = x * 4
+x /= 2   # x = x / 2

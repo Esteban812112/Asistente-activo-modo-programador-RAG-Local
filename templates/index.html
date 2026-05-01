@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda de Programación · Asistente Técnico con RAG</title>
+    <style>
+        /* Reset y estilo base de terminal/IDE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', 'Andale Mono', monospace;
+        }
+
+        body {
+            background-color: #0a0c0f;
+            background-image: radial-gradient(#1e2a3a 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #e3e6eb;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 0 1px #2d3a4e inset;
+            overflow: hidden;
+        }
+
+        /* Barra de estado tipo IDE */
+        .status-bar {
+            background: #161b22;
+            padding: 10px 20px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #2e8b57;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #2e8b57;
+        }
+
+        .status-text {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .file-tab {
+            background: #1f2937;
+            padding: 4px 12px;
+            border-radius: 6px;
+            color: #e6edf3;
+            border: 1px solid #3e4a5a;
+            margin-left: auto;
+            font-size: 0.8rem;
+        }
+
+        /* cabecera */
+        .header {
+            padding: 24px 28px 12px 28px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #79c0ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span {
+            background: #2e8b57;
+            color: #0d1117;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: 1px solid #3fb950;
+        }
+
+        .header p {
+            color: #8b949e;
+            font-size: 0.95rem;
+            margin-top: 8px;
+            border-left: 3px solid #2e8b57;
+            padding-left: 16px;
+        }
+
+        /* zona de entrada tipo REPL */
+        .input-area {
+            padding: 28px;
+            background: #010409;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #7ee787;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .prompt-line .chevron {
+            color: #ffa657;
+            font-size: 1.2rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            min-width: 250px;
+            background: #0d1117;
+            border: 1px solid #3c434d;
+            padding: 14px 18px;
+            border-radius: 8px;
+            color: #e6edf3;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.15s;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .input-group input:focus {
+            border-color: #2e8b57;
+            box-shadow: 0 0 0 3px rgba(46, 139, 86, 0.3);
+        }
+
+        .input-group button {
+            background: #238636;
+            border: 1px solid #2e8b57;
+            color: white;
+            padding: 0 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.15s;
+            font-family: inherit;
+        }
+
+        .input-group button:hover {
+            background: #2e8b57;
+            border-color: #3fb950;
+            box-shadow: 0 0 12px #2e8b5770;
+        }
+
+        .shortcut-hint {
+            color: #6e7681;
+            font-size: 0.75rem;
+            margin-top: 8px;
+            margin-left: 10px;
+        }
+
+        /* respuesta tipo snippet */
+        .response-block {
+            padding: 20px 28px;
+            border-bottom: 1px solid #21262d;
+            background: #0a0e14;
+        }
+
+        .response-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d2a8ff;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .response-header .dot {
+            width: 10px;
+            height: 10px;
+            background: #bb9af7;
+            border-radius: 2px;
+        }
+
+        .code-snippet {
+            background: #1a1f2b;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2e8b57;
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+            color: #e2e8f0;
+            box-shadow: inset 0 0 0 1px #2d3748;
+        }
+
+        /* 🆕 Estilos para fuentes RAG */
+        .rag-sources {
+            margin-top: 15px;
+            padding: 12px;
+            background: #1a1f2b;
+            border-radius: 8px;
+            border-left: 3px solid #bb9af7;
+        }
+
+        .rag-sources-title {
+            color: #bb9af7;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rag-source-item {
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-bottom: 5px;
+            padding: 6px;
+            background: #0d1117;
+            border-radius: 6px;
+        }
+
+        .rag-source-name {
+            color: #79c0ff;
+        }
+
+        .rag-similarity {
+            color: #2e8b57;
+        }
+
+        .rag-badge {
+            display: inline-block;
+            background: #2e8b5722;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #2e8b57;
+            margin-top: 10px;
+        }
+
+        /* historial estilo log técnico */
+        .history {
+            padding: 24px 28px;
+        }
+
+        .history h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #f78166;
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #3c434d;
+            padding-bottom: 12px;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .history-item {
+            background: #161b22;
+            border: 1px solid #2d333b;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.1s;
+        }
+
+        .history-item:hover {
+            border-color: #4a5a6e;
+        }
+
+        .history-header {
+            background: #1f2937;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #323b45;
+        }
+
+        .user-avatar {
+            background: #2e8b57;
+            color: #0d1117;
+            font-weight: bold;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            border: 1px solid #3fb950;
+        }
+
+        .user-question {
+            color: #e6edf3;
+            font-weight: 500;
+            word-break: break-word;
+            flex: 1;
+        }
+
+        .assistant-response {
+            padding: 18px;
+            background: #0d1117;
+            color: #b1bac4;
+            font-size: 0.95rem;
+            border-left: 4px solid #2e8b57;
+            margin: 0px 10px 10px 10px;
+            border-radius: 0 0 8px 8px;
+            white-space: pre-wrap;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .assistant-response strong {
+            color: #ffa657;
+            font-weight: 600;
+        }
+
+        .timestamp {
+            color: #6e7681;
+            font-size: 0.7rem;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+
+        .empty-history {
+            color: #6e7681;
+            text-align: center;
+            padding: 40px;
+            font-style: italic;
+            border: 1px dashed #3c434d;
+            border-radius: 8px;
+        }
+
+        /* scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c434d;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f5b68;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- barra superior estilo editor -->
+    <div class="status-bar">
+        <div class="status-indicator"></div>
+        <div class="status-text">Asistente activo · modo programador · 🔍 RAG Local</div>
+        <div class="file-tab">📁 RAG Pipeline</div>
+        <div style="color:#6e7681;">❰❰❰ REPL ❱❱❱</div>
+    </div>
+
+    <!-- cabecera -->
+    <div class="header">
+        <h1>
+            🧠 Ayuda de Programación 
+            <span>asistente técnico con RAG</span>
+        </h1>
+        <p>➤ Respuestas basadas en documentos locales + IA. Sistema RAG: recuperación de contexto, búsqueda semántica y generación aumentada.</p>
+    </div>
+
+    <!-- zona de prompt -->
+    <div class="input-area">
+        <div class="prompt-line">
+            <span class="chevron">❯❯</span>
+            <span>$ Plantea tu duda técnica</span>
+        </div>
+
+        <form method="POST">
+            <div class="input-group">
+                <input type="text" name="pregunta" placeholder="Ej: ¿Qué es una variable? ¿Cómo funciona un bucle for?" value="{{ pregunta_actual if pregunta_actual else '' }}" required>
+                <button type="submit">
+                    <span>▶</span> Ejecutar
+                </button>
+            </div>
+            <div class="shortcut-hint">⏎ Enter para enviar · escribe 'salir' para terminar</div>
+        </form>
+    </div>
+
+    <!-- bloque de respuesta (se muestra si existe) -->
+    {% if respuesta %}
+    <div class="response-block">
+        <div class="response-header">
+            <span class="dot"></span> Respuesta del asistente
+        </div>
+        <div class="code-snippet">
+            {{ respuesta|replace('\n', '<br>')|safe }}
+        </div>
+        
+        <!-- 🆕 MOSTRAR FUENTES RAG si existen en la última interacción -->
+        {% if historial and historial[-1].rag_sources %}
+        <div class="rag-sources">
+            <div class="rag-sources-title">
+                📚 Fuentes RAG utilizadas:
+            </div>
+            {% for fuente in historial[-1].rag_sources %}
+            <div class="rag-source-item">
+                📄 <span class="rag-source-name">{{ fuente.source }}</span>
+                <span class="rag-similarity">(relevancia: {{ "%.0f"|format(fuente.similarity * 100) }}%)</span>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="rag-badge">
+            🔍 Respuesta generada con RAG local
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- historial -->
+    <div class="history">
+        <h3>
+            <span>⏳</span> Historial de consultas
+        </h3>
+        <div class="history-list">
+            {% if historial %}
+                {% for item in historial %}
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-question">{{ item.usuario }}</div>
+                        <div class="timestamp">{{ item.timestamp if item.timestamp else '' }}</div>
+                    </div>
+                    <div class="assistant-response">
+                        <strong>asistente:~$</strong> {{ item.respuesta|replace('\n', '<br>')|safe }}
+                    </div>
+                    <!-- 🆕 Mostrar fuentes RAG en cada item del historial si existen -->
+                    {% if item.rag_sources %}
+                    <div style="padding: 0 18px 12px 18px;">
+                        <div style="font-size: 0.7rem; color: #bb9af7; margin-bottom: 5px;">📚 Fuentes RAG:</div>
+                        {% for fuente in item.rag_sources %}
+                        <div style="font-size: 0.7rem; color: #6e7681;">
+                            • {{ fuente.source }} ({{ "%.0f"|format(fuente.similarity * 100) }}% relevancia)
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-history">
+                    ✨ No hay consultas en el historial. ¡Haz tu primera pregunta!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- pie sutil estilo línea de comandos -->
+    <div style="background:#010409; padding: 10px 28px; border-top: 1px solid #2d333b; color:#6e7681; display:flex; gap: 20px; font-size:0.8rem;">
+        <span>⚡ asistente_repl v3.0.0</span>
+        <span>🔷 Gemini 2.5 Flash · RAG Local</span>
+        <span>📚 {{ historial[-1].rag_sources|length if historial and historial[-1].rag_sources else 0 }} fuentes RAG</span>
+        <span style="margin-left:auto;">❯❯❯ listo para más preguntas</span>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+# Nombres de variables: snake_case
+mi_variable = 10
+
+# Nombres de funciones: snake_case
+def mi_funcion():
+    pass
+
+# Nombres de clases: PascalCase
+class MiClase:
+    pass
+
+# Constantes: UPPER_CASE
+MAXIMO_USUARIOS = 100
+
+# Indentación: 4 espacios
+if condicion:
+    print("4 espacios")
+
+# Línea máxima: 79 caracteres
+# Comentarios: explicativos, no redundantes
+
+# Docstrings para documentar
+def mi_funcion(parametro):
+    """
+    Descripción de la función.
+    
+    Args:
+        parametro: Descripción del parámetro
+        
+    Returns:
+        Descripción del retorno
+    """
+    pass
