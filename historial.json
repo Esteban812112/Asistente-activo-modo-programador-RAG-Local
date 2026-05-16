@@ -233,5 +233,396 @@
                 "similarity": 0.515
             }
         ]
+    },
+    {
+        "usuario": "sql",
+        "respuesta": "La respuesta es:\n\nUn JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas. Permite co **co**lectar datos de diferentes tablas para crear una vista más completa.\n\n\n⚠️ Nota:\nEsta respuesta fue generada por el modelo de IA\ny NO se encontró información relevante en la base de datos (RAG).\n\nPuede no estar basada en los documentos cargados.\n",
+        "timestamp": "20:39:20"
+    },
+    {
+        "usuario": "¿Qué es un JOIN en SQL?",
+        "respuesta": "Un JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre.",
+        "timestamp": "20:39:57",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.515
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es un JOIN en SQL?",
+        "respuesta": "Un JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas.",
+        "timestamp": "20:39:59",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.515
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es un JOIN en SQL?",
+        "respuesta": "Un JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas.",
+        "timestamp": "21:26:27",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.515
+            }
+        ]
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "Un LEFT JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas.  En esencia, devuelve todos los registros de la tabla de la izquierda y las filas que coincidan en la tabla de la derecha. Si no hay coincidencia en la tabla de la derecha, devuelve valores NULL para las columnas de la tabla de la derecha.\n",
+        "timestamp": "21:27:59",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "# CONTEXTO RAG\n\nUn LEFT JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas.  En esencia, devuelve todos los registros de la tabla de la izquierda y las filas que coincidan en la tabla de la derecha.  Si no hay coi\n\n# ⚙️ Funcionamiento\n\nUn LEFT JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas.  En esencia, devuelve todos los registros de la tabla de la izquierda y las filas que coincidan en la tabla de la derecha.  Si no hay coi\n\n1.  **El Proceso:**  El LEFT JOIN se ejecuta primero.  Luego, para cada fila de la tabla de la izquierda (la que se le da como primer argumento), la consulta busca en la tabla de la derecha (la que se le da como segundo argumento) las filas que coincidan con las condiciones especificadas en la cláusula `ON`.\n2.  **El Resultado:**  Si una fila en la tabla de la izquierda encuentra una coincidencia en la tabla de la derecha, se incluye en el resultado.  Si no encuentra ninguna coincidencia, la fila de la tabla de la izquierda se omite del resultado.\n3.  **La Importancia:** El LEFT JOIN es crucial para obtener una visión completa de los datos, asegurando que todas las filas de la tabla de la izquierda estén incluidas en el resultado, incluso si no hay coincidencias en la tabla de la derecha.\n4.  **Para qué sirve:**  El LEFT JOIN se utiliza para conectar datos de varias tablas, especialmente cuando es importante tener todos los datos de una tabla ",
+        "timestamp": "21:33:27",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "¡Hola! Es un placer ayudarte a dominar las habilidades de programación. Aquí te presento una lista de 9 cosas que un programador debería saber, con una explicación detallada y ejemplos prácticos.  Vamos a sumergirnos en un terreno que es fundamental para el éxito en la programación:\n\n# CONTEXTO\n\n# 📘 Concepto\n# ⚙️ Funcionamiento\n# 💡 Ejemplo\n# 🚀 Buenas prácticas\n# ✅ Resumen\n\n# 9.  **Tipos de JOIN:**  El corazón de la manipulación de datos en SQL radica en los JOINs.  No todos los JOINs son iguales.  Existen diferentes tipos, cada uno con un propósito específico.  Comprenderlos te permite optimizar tus consultas y obtener los resultados deseados.\n\n# ⚙️ Funcionamiento\n\nUn JOIN en SQL es una operación que combina filas de dos o más tablas basándose en una relación entre ellas.  En lugar de volver a leer todas las filas de una tabla, SQL permite que las filas de una tabla se mezclen con las de otra, basándose en una condición.  El tipo de JOIN que eliges afecta la eficiencia de la consulta y, en algunos casos, el resultado final.\n\n# 💡 Ejemplo:  Considera una tabla de clientes (clientes) y una tabla de pedidos (pedidos).  Quieres obtener el nombre del cliente y el número de pedido para cada cliente.  Un JOIN simple sería:\n\n```sql\nSELECT\n    clientes.nombre_cliente,\n    pedidos.numero_pedido\nFROM\n    clientes\nJOIN\n    pedidos ON clientes.id = pedidos.cliente_id;\n```\n\nEste código, si ejecutado, devolverá una tabla con dos columnas: `nombre_cliente` y `numero_pedido`, mostrando la información de cada cliente y su pedido.\n\n# 🚀 Buenas prácticas\n\n*   **Usa `INNER JOIN` cuando quieras resultados que solo contengan registros que coincidan en ambas tablas.**  Esto es el caso más común.\n*   **Evita `LEFT JOIN` si necesitas que todas las filas de la tabla de la izquierda estén presentes, incluso si no hay coincidencia en la tabla de la derecha.**  En estos casos, usa `RIGHT JOIN` o `FULL OUTER JOIN` en su lugar.\n*   **Asegúrate de que las columnas de JOIN tengan tipos de datos compat",
+        "timestamp": "13:24:42"
+    },
+    {
+        "usuario": "pan ",
+        "respuesta": "¡Hola! ¡Excelente pregunta! Entender los fundamentos de la programación es crucial para cualquier desarrollador. Aquí tienes una lista de 9 cosas que un programador debería saber, con una explicación detallada, ejemplos prácticos y código de ejemplo (cuando sea relevante):\n\n## 9 Cosas que un Programador Debería Saber\n\n### 1. Fundamentos de Tipos de Datos y Tipos de Datos\n\n* **¿Qué es?** Los tipos de datos definen el tipo de información que una variable puede contener (números, texto, booleanos, etc.).  Los tipos de datos determinan cómo se almacenan y procesan los datos.\n* **Ejemplos:**\n    * `int`: Números enteros (ej: 10, -5, 0).\n    * `float`: Números decimales (ej: 3.14, -2.71).\n    * `string`: Texto (ej: \"Hola\", \"Python\").\n    * `bool`: Valores booleanos (True o False).\n* **Ejemplo:**\n    ```python\n    x = 10\n    y = \"Hola\"\n    print(x + y)  # Imprime: Hola\n    ```\n* **Por qué es importante:**  El tipo de dato correcto es crucial para evitar errores y optimizar el rendimiento.\n\n### 2. Variables y Constantes\n\n* **¿Qué es?** Las variables son nombres que se utilizan para almacenar datos en memoria.  Las constantes son nombres que se usan para almacenar valores que no pueden ser modificados después de su definición.\n* **Ejemplo:**\n   ```python\n   nombre = \"Juan\"\n   edad = 30\n   # edad = 31  # Esto causaría un error, porque 'edad' es una constante\n   print(nombre)\n   print(edad)\n   ```\n* **Por qué es importante:**  Las variables permiten la reutilización de datos y la modificación de valores, mientras que las constantes garantizan la consistencia de los datos.\n\n### 3. Estructuras de Control (Condicionales y Loops)\n\n* **¿Qué son?** Las estructuras de control permiten ejecutar diferentes bloques de código según ciertas condiciones o repetir un bloque de código varias veces.\n* **Condicionales (if/else):**  Permiten ejecutar un bloque de código si una condición es verdadera o falsa.\n* **Ejemplo (if/else):**\n   ```python\n   edad = 20\n   if edad >= 18:\n       print(\"Eres",
+        "timestamp": "13:26:42"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "⚠️ Esta consulta no está relacionada con programación o tecnología.\n\nAquí tienes 9 cosas que un programador debería saber:\n\n1.  **Fundamentos de la Programación:** Entender conceptos básicos como variables, tipos de datos, operadores, estructuras de control (if/else, loops).\n    *   **Ejemplo:** En Python, `x = 5` almacena un valor. `if x > 3:` verifica si `x` es mayor que 3.\n\n2.  **Algoritmos y Estructuras de Datos:** Saber cómo resolver problemas de manera eficiente.\n    *   **Ejemplo:**  Implementar una búsqueda binaria para encontrar un elemento en una lista.\n\n3.  **Lenguajes de Programación:**  Elegir y dominar un lenguaje específico (Python, Java, C++, JavaScript, etc.).\n    *   **Ejemplo:** Python es popular por su legibilidad y versatilidad.\n\n4.  **Tipos de Programación:**  Entender los paradigmas de programación (orientado a objetos, imperativo, funcional).\n    *   **Ejemplo:**  En Java, se usa la programación orientada a objetos, donde los objetos tienen atributos y métodos.\n\n5.  **Control de Versiones (Git):**  Usar sistemas de control de versiones (Git) para gestionar el código.\n    *   **Ejemplo:**  `git commit` guarda cambios en tu código.\n\n6.  **Pruebas Unitarias:** ",
+        "timestamp": "13:36:56"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "⚠️ Esta consulta no está relacionada con programación o tecnología.\n\nAquí tienes 9 cosas que un programador debería saber:\n\n1.  **Conceptos Básicos:**  Entender variables, tipos de datos, operadores, estructuras de control (if/else, loops).\n2.  **Algoritmos:**  Conocer cómo resolver problemas paso a paso.\n3.  **Estructuras de Datos:**  Conocer y usar listas, diccionarios, árboles, etc.\n4.  **Programación Orientada a Objetos (POO):**  Comprender clases, objetos, herencia, polimorfismo.\n5.  **Patrones de Diseño:**  Saber aplicar patrones para organizar el código.\n6.  **Tipos de Programación:**  Conocer diferentes paradigmas (imperativo, orientado a objetos, funcional).\n7.  **Comprensión de Lenguajes:**  Dominar un lenguaje de programación específico (Python, Java, C++).\n8.  **Bases de Datos:**  Conocer cómo almacenar y recuperar datos.\n9.  **Pruebas:**  Escribir pruebas unitarias y de integración para asegurar la calidad del código.\n\n¿Te gustaría saber más sobre alguna de estas áreas?\n\n---\n\n⚠️ Respuesta generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "13:39:43"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "⚠️ Este es un resumen de 9 cosas cruciales para cualquier programador:\n\n1.  **Algoritmos y Estructuras de Datos:**  Dominar algoritmos (como búsqueda, ordenamiento) y estructuras de datos (listas, diccionarios, árboles) es fundamental para resolver problemas de manera eficiente.\n    *   **Ejemplo:**  Usar un árbol de búsqueda para encontrar un elemento específico en una lista.\n\n2.  **Programación Orientada a Objetos (POO):** Aprender sobre clases, objetos, herencia, polimorfismo y encapsulación te permite crear código reutilizable y modular.\n    *   **Ejemplo:**  Crear una clase `Persona` con atributos como `nombre` y `edad` y métodos para `mostrarNombre()` y `obtenerEdad()`.\n\n3.  **Tipos de Datos:**  Comprender los tipos de datos básicos (enteros, flotantes, cadenas, booleanos) es esencial para escribir código correcto y eficiente.\n    *   **Ejemplo:**  Usar un `int` para números enteros, `float` para números decimales, y `string` para texto.\n\n4.  **Control de Flujo:**  Aprender sobre `if`, `else`, `for` y `while` es clave para controlar el flujo de ejecución de un programa.\n    *   **Ejemplo:**  Un bucle `for` que itera sobre una lista de números.\n\n5.  **Funciones:**  Escribir fu",
+        "timestamp": "13:44:31"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "⚠️ Aquí tienes 9 cosas que un programador debería saber:\n\n1.  **Variables:** Son contenedores para almacenar datos.  Ejemplo: `nombre = \"Juan\"`\n2.  **Tipos de Datos:**  `int` (enteros), `float` (decimal), `string` (texto), `bool` (verdadero/falso).\n3.  **Operadores:**  `+`, `-`, `*`, `/`, `==`, `!=`, `>`, `<`, etc.  (Ejemplo: `resultado = 5 + 3` )\n4.  **Control de Flujo:** `if`, `else`, `elif` (condicionales) para ejecutar código basado en condiciones.\n5.  **Bucles (Loops):** `for` y `while` (ejecución repetida de código). Ejemplo: `for i in range(5): print(i)`\n6.  **Funciones:**  Bloques de código reutilizables. Ejemplo: `def saludar(nombre): print(\"Hola, \" + nombre)`\n7.  **Estructuras de Datos:**  `list`, `tuple`, `dictionary` (diccionario) para organizar datos. Ejemplo: `mi_lista = [1, 2, 3]`\n8.  **Algoritmos:**  Secuencia de pasos para resolver un problema. Ejemplo:  \"Encontrar el máximo de dos números\"\n9.  **Manejo de Errores:**  `try`, `except` (manejar excepciones) para evitar que el programa se detenga. Ejemplo: `try:  resultado = 10 / 0\n\n---\n\n⚠️ Respuesta generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "13:44:58"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "⚠️ Aquí tienes 9 cosas que un programador debería saber:\n\n1.  **Variables:** Son contenedores para almacenar datos.  Ejemplo: `nombre = \"Juan\"`\n2.  **Tipos de Datos:**  `int` (enteros), `float` (decim), `string` (texto), `boolean` (verdadero/falso).  Cada tipo tiene un rango y formato específicos.\n3.  **Operadores:**  `+`, `-`, `*`, `/`, `=`, `==`, `!=`, `<`, `>`.  Son esenciales para realizar operaciones.\n4.  **Control de Flujo:** `if`, `else`, `for`, `while` – permiten ejecutar código según condiciones o repetición.\n5.  **Funciones:**  Bloques de código reutilizables que realizan una tarea específica.  Ejemplo: `def saludar(nombre): return 'Hola, ' + nombre`\n6.  **Estructuras de Datos:**  `list`, `dict`, `tuple` –  organizan datos en colecciones.  `list` es mutable (puede cambiar), `dict` es immutable (no puede cambiar).\n7.  **Manejo de Errores:**  `try`, `except` –  manejar excepciones para evitar que el programa se detenga.  Ejemplo: `try:  print(\"Hola\"); except ValueError: print(\"Error de entrada\");`\n8.  **Programación Orientada a Objetos (POO):**  Clasificación de datos en objetos con atributos (datos) y métodos (acciones).  Ejemplo: `class Persona: def __init\n\n---\n\n# 📚 Infor",
+        "timestamp": "13:56:37"
+    },
+    {
+        "usuario": "Buenas prácticas de programación",
+        "respuesta": "⚠️ Buenas prácticas de programación:\n\n1.  **Control de Versiones (Git):** Utiliza Git para rastrear cambios en tu código.  Esto facilita la colaboración y permite revertir cambios si es necesario.\n    *   **Ejemplo:**  `git commit -m \"Implementación de la funcionalidad X\"`\n2.  **Comentarios:** Escribe comentarios claros y concisos en tu código. Explica *por qué* escribiste algo, no solo *qué* escribiste.\n    *   **Ejemplo:**  `//  Esta línea calcula el promedio de los números en el array`\n3.  **DRY (Don't Repeat Yourself):** Evita duplicar código. Si necesitas hacer algo similar en varios lugares, crea una función o clase reutilizable.\n4.  **Testing:** Escribe pruebas unitarias para tu código.  Esto te ayuda a detectar errores y asegura que el código funcione correctamente.\n    *   **Ejemplo:**  `import unittest`\n5.  **Modularización:** Divide tu código en módulos lógicos.  Esto mejora la legibilidad, la reutilización y la mantenibilidad.\n6.  **Diseño de Código:**  Considera la estructura de tu código desde el principio.  Utiliza patrones de diseño (por ejemplo, Singleton, Factory) para simplificar la creación de código.\n7.  **Código Limpio:**  Escribe código legible. Usa nombres d",
+        "timestamp": "13:57:55"
+    },
+    {
+        "usuario": "como usar la madera ",
+        "respuesta": "⚠️ Usar la madera para hacer objetos es un concepto antiguo, pero aún tiene aplicaciones en la construcción y la fabricación.  La madera, en su forma natural, es un material muy resistente y flexible.\n\n**Aquí hay un resumen de cómo se usa:**\n\n*   **Construcción:** La madera se utiliza en la construcción de estructuras como casas, puentes, y edificios.  Se emplea en la fabricación de madera contrachapada, tablones y otros componentes.\n*   **Fabricación de muebles:**  La madera es un material popular para la fabricación de muebles, como mesas, sillas y camas.\n*   **Construcción de objetos pequeños:** Se usa para crear objetos pequeños, como juguetes, herramientas y adornos.\n*   **Aplicaciones específicas:** La madera se utiliza en la fabricación de productos como palos de madera, paletas y otros elementos decorativos.\n\n**Ejemplo sencillo:** Imagina que quieres construir una mesa.  Podrías usar madera maciza para la base, madera contrachapada para el tablero y clavos para unir los componentes.\n\nEn resumen, la madera es un material versátil con una larga historia de uso en la construcción y fabricación, aunque su uso moderno es más limitado.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró",
+        "timestamp": "13:58:52"
+    },
+    {
+        "usuario": "como usar la madera ",
+        "respuesta": "La madera, en su forma natural, es un material muy resistente y flexible.  Se utiliza en muchas aplicaciones, desde la construcción hasta la fabricación.\n\n**Ejemplo:**\n\n*   **Construcción:** La madera se usa para construir casas, puentes y estructuras.\n*   **Fabricación:** Se utiliza para hacer muebles, utensilios de cocina, y juguetes.\n\nEn resumen, la madera es un material versátil con propiedades interesantes.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "14:17:00"
+    },
+    {
+        "usuario": "mejor posion de futbol ",
+        "respuesta": "La mejor ubicación para el fútbol depende de varios factores, pero generalmente se busca un terreno que ofrezca:\n\n*   **Terreno plano:**  Esto facilita la construcción de un campo de juego.\n*   **Tamaño:**  Un campo de fútbol debe ser lo suficientemente grande para permitir el juego de forma justa.\n*   **Distancia de los espectadores:**  La distancia entre el campo y el público es importante para la experiencia del juego.\n*   **Acceso al transporte:**  Un campo debe estar cerca de transporte público y carreteras para que los aficionados puedan llegar fácilmente.\n\n**Ejemplo:** Un campo de fútbol moderno podría estar ubicado en una zona con un terreno plano, un tamaño adecuado y una buena accesibilidad.\n\n¿Hay algo más sobre este tema que te gustaría saber?\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "14:17:35"
+    },
+    {
+        "usuario": "mejor posion de futbol ",
+        "respuesta": "La mejor ubicación para el fútbol depende de varios factores, pero generalmente se busca un terreno que ofrezca:\n\n*   **Terreno plano:** Esto facilita la construcción de un campo de juego.\n*   **Tamaño:** Un campo grande permite más espacio para los jugadores y espectadores.\n*   **Distancia de los aficionados:**  Un terreno más alejado de la multitud suele mejorar la experiencia de los jugadores.\n*   **Topografía:** Un terreno relativamente plano o con poca pendiente es ideal.\n\n**Ejemplo:**  Un estadio de fútbol en una llanura amplia y con una pendiente suave suele ser una buena opción.\n\n¿Te gustaría que profundizáramos en algún aspecto específico de esto?\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante en la base documental.\n\nLa respuesta fue generada usando conocimiento general del modelo.\n",
+        "timestamp": "14:24:33"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "¡Hola! Aquí tienes una lista de 97 cosas importantes para un programador, enfocada en la claridad y la concisión:\n\n## 97 Cosas Importantes para un Programador\n\n1.  **Fundamentos de la Programación:** Entender conceptos básicos como variables, tipos de datos, bucles, condicionales, funciones.\n2.  **Lenguajes de Programación:**  Dominar al menos un lenguaje (Python, JavaScript, Java, C#).\n3.  **Algoritmos y Estructuras de Datos:**  Conocer cómo resolver problemas con eficientemente.\n4.  **Control de Flujo:**  `if`, `else`, `for`, `while` – cruciales para la lógica.\n5.  **Patrones de Diseño:**  SOLID, DRY, KISS – para escribir código mantenible.\n6.  **Tipado Estático vs. Tipado Dinámico:**  Entender las ventajas de cada uno.\n7.  **Programación Orientada a Objetos (POO):**  Clases, objetos, herencia, polimorfismo.\n8.  **Manejo de Errores:**  `try`, `except`, `finally` – para evitar fallos.\n9.  **Concurrencia y Paralelismo:**  Usar `threads`, `processes`, `asyncio` para mejorar el rendimiento.\n10. **Testing:**  Escribir pruebas unitarias y de integración.\n11. **Version Control (Git):**  Utilizar Git para controlar cambios en el código.\n12. **Depuración:**  Usar\n\n---\n\n# 📚 Información RAG",
+        "timestamp": "14:25:02"
+    },
+    {
+        "usuario": "mejor posion de futbol ",
+        "respuesta": "La mejor ubicación para el fútbol depende de varios factores, pero generalmente se busca un terreno que ofrezca:\n\n*   **Terreno plano:** Esto facilita la construcción de un campo de juego.\n*   **Tamaño:** Un terreno grande permite más espacio para los jugadores y la infraestructura.\n*   **Clima:** La ubicación debe tener un clima favorable para el juego (ej: clima seco, temperaturas moderadas).\n*   **Distancia a ciudades:**  Para facilitar los viajes de los jugadores y la logística.\n*   **Infraestructura:**  Acceso a carreteras, electricidad, agua, etc.\n*   **Atracción de aficionados:**  Un lugar con mucha gente que quiera ver el partido.\n*   **Competencia:**  La proximidad a otros equipos puede generar interés.\n\nEn resumen, la ubicación ideal es un terreno que sea fácil de construir, tenga un clima favorable, y tenga un buen ambiente para el fútbol.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "14:26:38"
+    },
+    {
+        "usuario": "mejor posion de futbol ",
+        "respuesta": "¡Hola! Aquí tienes una respuesta concisa sobre el mejor lugar para el fútbol:\n\nEl mejor lugar para el fútbol es un terreno que sea:\n\n*   **Plano:**  Evita obstáculos que dificultan el juego.\n*   **Grande:**  Un campo amplio permite más espacio para los jugadores y el público.\n*   **Limpio:**  Un campo sin basura o obstáculos mejora la experiencia de los espectadores.\n\n**Ejemplo:**  El estadio de Wembley en Londres es un ejemplo de un campo plano y grande, ideal para el fútbol.\n\n¿Te gustaría saber algo más sobre programación?\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "14:34:52"
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "⚠️ RAG (Retrieval-Augmented Generation) es una técnica en IA que mejora la calidad de las respuestas generadas por modelos de lenguaje.\n\nEn esencia, RAG busca *recuperar* información relevante de una base de datos externa (como una base de datos de conocimiento, un documento, etc.) y luego *añadirla* al prompt que se le da al modelo de lenguaje.\n\n**Aquí te explico cómo funciona:**\n\n1.  **Recuperación:** El modelo de lenguaje recibe un prompt inicial.\n2.  **Búsqueda:**  RAG busca información relevante en la base de datos externa.\n3.  **Augmentación:** La información recuperada se combina con el prompt original, proporcionando al modelo un contexto más completo.\n4.  **Generación:** El modelo de lenguaje genera una respuesta más precisa y útil, basada en el prompt original y la información recuperada.\n\n**Ejemplo:**\n\nImagina que quieres responder a la pregunta \"¿Cuál es la capital de Francia?\".\n\n*   **Sin RAG:**  El modelo podría responder \"La capital de Francia es París\".\n*   **Con RAG:** El modelo primero recupera la información de que París es la capital de Francia. Luego, responde: \"La capital de Francia es París.\"\n\n**En resumen, RAG ayuda a los modelos de lenguaje a ser más inform",
+        "timestamp": "14:41:40"
+    },
+    {
+        "usuario": "97cosas quetodo programador debería saber",
+        "respuesta": "⚠️ Aquí tienes 97 cositas importantes para un programador:\n\n1.  **Conceptos Fundamentales:** Entender los tipos de datos, estructuras de control (if/else, loops), y funciones.\n2.  **Tipos de Datos:**  Conocer los tipos de datos básicos (int, float, string, bool) y cómo usarlos.\n3.  **Variables:**  Cómo declarar, asignar y usar variables.\n4.  **Tipos de Datos:**  Entender los tipos de datos básicos (int, float, string, bool) y cómo usarlos.\n5.  **Estructuras de Control:**  Usar `if/else` para ejecutar código basado en condiciones.\n6.  **Loops:**  Usar `for` y `while` para repetir código.\n7.  **Funciones:**  Definir y usar funciones para organizar código.\n8.  **Estructuras de Datos:**  Conocer listas, diccionarios y conjuntos.\n9.  **Programación Orientada a Objetos (POO):**  Conceptos como clases, objetos, herencia y polimorfismo.\n10. **Patrones de Diseño:**  Conocer patrones como Singleton, Factory, Observer.\n11. **Manejo de Excepciones:**  Capturar y manejar errores.\n12. **Tipos de Errores:**  Comprender los diferentes tipos de errores (TypeError, ValueError, etc.).\n13. **Variables de Entorno:**  Usar variables de entorno para configurar el entorno.\n14. **Logging:**  Registrar info",
+        "timestamp": "14:47:03"
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "⚠️ RAG (Retrieval-Augmented Generation) es una técnica en IA que mejora la calidad de las respuestas generadas por modelos de lenguaje.\n\nEn esencia, RAG busca *recuperar* información relevante de una fuente externa (como una base de datos o un texto) y luego usar esa información para ayudar al modelo de lenguaje a generar una respuesta más precisa y útil.\n\n**Piensa en ello como un asistente que lee un libro y luego te responde a tus preguntas.**  En lugar de simplemente \"leer\" el libro, el asistente busca información relevante en el libro para responder a tus preguntas de forma más completa.\n\n**Ejemplo:**\n\nImagina que tienes un modelo de lenguaje que responde preguntas sobre la historia de Roma.  Si usas RAG, en lugar de solo darte la respuesta directamente, el sistema buscaría en una base de datos histórica y te mostraría información relevante, como:\n\n*   La ubicación de Roma en el mapa de la época.\n*   Los principales líderes políticos y militares de Roma.\n*   La fecha de fundación de Roma.\n\n**En resumen, RAG hace que los modelos de lenguaje sean más inteligentes y confiables al proporcionarles información adicional.**\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevan",
+        "timestamp": "14:47:46"
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "⚠️ LEFT JOIN en SQL funciona para combinar filas de dos tablas basándose en una condición.  En lugar de buscar coincidencias en una sola tabla, busca filas donde el lado izquierdo de la unión tiene una coincidencia en el lado derecho.\n\n**En esencia:**  Si no hay coincidencia en el lado izquierdo, las columnas de la tabla izquierda se llenan con valores `NULL`.\n\n**Ejemplo:**\n\nSupongamos que tenemos dos tablas: `usuarios` y `pedidos`.\n\n*   `usuarios`:  Tiene columnas `id` (identificador único) y `nombre`.\n*   `pedidos`: Tiene columnas `id` (identificador del pedido), `usuario_id` (identificador del usuario que realizó el pedido) y `fecha`.\n\nQueremos obtener todos los usuarios y sus pedidos, pero solo queremos que se muestren los usuarios que *tienen* pedidos.\n\n**SQL:**\n\n```sql\nSELECT u.nombre, p.id\nFROM usuarios u\nLEFT JOIN pedidos p ON u.id = p.usuario_id;\n```\n\n**Explicación:**\n\n1.  **LEFT JOIN:**  El `LEFT JOIN` asegura que *todos* los usuarios se incluyan en el resultado, incluso si no tienen pedidos.\n2.  **`ON u.id = p.usuario_id`:** Esta condición especifica que la unión debe realizarse cuando el `id` del usuario en la tabla `usuarios` coincide con el `id` del pedido en la tabla",
+        "timestamp": "14:48:31",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es recursividad?",
+        "respuesta": "⚠️ La recursividad es un concepto fundamental en la programación que se utiliza para definir una función que se llama a sí misma.  En esencia, permite que una función procese una estructura de datos o un árbol de datos, dividiéndolo en subproblemas más pequeños y manejables.\n\nImagina una lista de números.  La recursión podría ser útil para calcular el factorial de un número (n! = n * (n-1)!).  La función recursiva se llama a sí misma con un valor más pequeño hasta que alcanza un caso base (como el factorial de 0, que es 1).\n\nAquí hay un ejemplo simple:\n\n```python\ndef factorial(n):\n  if n == 0:\n    return 1\n  else:\n    return n * factorial(n-1)\n\nprint(factorial(5)) # Imprime 120\n```\n\nEn este caso, la función `factorial` se llama a sí misma con un valor más pequeño hasta llegar al caso base (n=0), que devuelve 1.  Luego, el resultado se multiplica por el resultado de la llamada recursiva con `n-1`.\n\nEn resumen, la recursividad es una técnica poderosa para resolver problemas que pueden dividirse en subproblemas similares.\n\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "14:49:11"
+    },
+    {
+        "usuario": "sql",
+        "respuesta": "```text\nUn `LEFT JOIN` en SQL (o en cualquier base de datos) devuelve todas las filas de la tabla de la izquierda (la que se especifica primero en la cláusula `FROM`) y las filas coincidentes de la tabla de la derecha (la que se especifica después).  Si no hay coincidencia en la tabla de la derecha, las columnas de la tabla de la derecha se llenan con `NULL`.\n\n**Ejemplo:**\n\nImagina dos tablas: `Clientes` y `Pedidos`.\n\n*   `Clientes` tiene columnas `ClienteID` y `Nombre`.\n*   `Pedidos` tiene columnas `PedidoID` y `Fecha`.\n\nUn `LEFT JOIN` devolverá todas las filas de `Clientes`, incluso si no hay pedidos asociados a esa persona.  Si un cliente no tiene pedidos, las columnas `PedidoID` y `Fecha` serán `NULL`.\n\n**En resumen:**  El `LEFT JOIN` te da una vista completa de los datos de una tabla, incluyendo aquellos que no están relacionados con otra tabla.\n```\n\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "14:50:08"
+    },
+    {
+        "usuario": "¿Quién ganó el mundial de fútbol 2022?",
+        "respuesta": "🏆 Argentina ganó el Mundial de Fútbol 2022.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "15:02:29"
+    },
+    {
+        "usuario": "¿Qué es una variable en Python?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nUna variable en Python es una ubicación de memoria que se utiliza para almacenar datos.  Puedes asignarle un valor, y ese valor puede cambiar a lo largo del tiempo.  Es como una caja donde guardas algo.\n\nAquí tienes un ejemplo:\n\n```python\nedad = 25\nprint(edad)\n```\n\nEste código asigna el valor `25` a la variable `edad` y luego imprime el valor de `edad` en la consola.  La variable `edad` ahora almacena el valor 25.\n\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la base documental.\n\n📊 Similitud:\n64.66%\n",
+        "timestamp": "15:03:04",
+        "rag_sources": [
+            {
+                "source": "# PYTHON - GUÍA COMPLETA PARA DESAR.txt",
+                "similarity": 0.647
+            },
+            {
+                "source": "Definición y uso.txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "9. BUENAS PRÁCTICAS.txt",
+                "similarity": 0.543
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nRAG (Retrieval-Augmented Generation) es una técnica en IA que mejora la calidad de las respuestas generadas por modelos de lenguaje.  En esencia, RAG **busca información relevante de una base de datos externa** y luego la utiliza para generar una respuesta más precisa y completa.\n\nImagina que estás escribiendo un ensayo sobre la historia de la inteligencia artificial.  En lugar de simplemente usar tu conocimiento previo, RAG te proporcionaría información relevante, como artículos, datos o incluso fragmentos de código, que te ayudarían a escribir un ensayo mejor.\n\n**En términos más simples:** RAG es como tener un \"buscador de información\" que ayuda al modelo de lenguaje a entender mejor lo que se le pide.**\n\n**Ejemplo:** Si le preguntas a RAG \"Quién inventó la CPU?\",  RAG buscaría en una base de datos y te respondería con \"Intel\".\n\nEspero que esto te ayude a entender mejor el concepto de RAG.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n",
+        "timestamp": "15:26:56"
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nUn LEFT JOIN en SQL es una operación que combina filas de dos tablas basándose en una condición.  En esencia, devuelve todas las filas de la tabla de la izquierda (la que se especifica primero en la cláusula `LEFT JOIN`) y las filas correspondientes de la tabla de la derecha (la que se especifica después en la cláusula `JOIN`).  Si no hay coincidencia en la tabla de la derecha, las columnas de la tabla de la derecha se llenan con valores `NULL`.\n\n**En resumen:**  Un LEFT JOIN asegura que *todas* las filas de la tabla izquierda se incluyan en el resultado, incluso si no hay una coincidencia en la tabla derecha.\n\nAquí tienes un ejemplo SQL:\n\n```sql\nSELECT\n    u.nombre,\n    p.id\nFROM\n    usuarios u\nLEFT JOIN\n    pedidos p ON u.id = p.usuario_id;\n```\n\nEste ejemplo devolverá todas las filas de la tabla `usuarios` (la izquierda) y las filas correspondientes de la tabla `pedidos` (la derecha) donde la columna `usuario_id` en `pedidos` coincide con la columna `id` en `usuarios`.  Si un usuario no tiene pedidos, el `id` de ese usuario no aparecerá en el resultado.\n\n**Diferencia con INNER JOIN:**\n\nLa principal diferencia es que un ",
+        "timestamp": "15:28:32",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nUn LEFT JOIN en SQL es una operación que combina filas de dos tablas basándose en una condición.  En esencia, devuelve todas las filas de la tabla de la izquierda (la que se filtra) y las filas correspondientes de la tabla de la derecha (la que no se filtra).  Si no hay coincidencia en la tabla de la derecha, las columnas de la tabla de la derecha se asignan a NULL.\n\nAquí hay un ejemplo:\n\n```sql\nSELECT u.nombre, p.id\nFROM usuarios u\nLEFT JOIN pedidos p ON u.id = p.usuario_id;\n```\n\nEn este caso, devolverá todos los registros de la tabla `usuarios` (u) y las filas correspondientes de la tabla `pedidos` (p) donde el `usuario_id` de la tabla `pedidos` coincida con el `id` de la tabla `usuarios`.  Si un usuario no tiene pedidos, las columnas de `pedidos` se asignarán a NULL.\n\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la base documental.\n\n📊 Similitud:\n54.85%\n",
+        "timestamp": "15:37:46",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nUn LEFT JOIN en SQL es una operación que combina filas de dos tablas basándose en una condición. En esencia, devuelve todas las filas de la tabla de la izquierda (la que se especifica primero en la cláusula JOIN) para cada fila de la tabla de la derecha.  Si no hay una coincidencia en la tabla de la derecha, las columnas de la tabla de la derecha se asignarán a NULL.\n\nAquí hay un ejemplo:\n\n```sql\nSELECT u.nombre, p.fecha, p.total\nFROM usuarios u\nLEFT JOIN pedidos p ON u.id = p.usuario_id;\n```\n\nEn este caso, devolverá todas las filas de la tabla `usuarios` (u) y la tabla `pedidos` (p) donde `u.id` es igual a `p.usuario_id`. Si un usuario no tiene pedidos, las columnas `fecha` y `total` serán `NULL`.  Si un usuario tiene pedidos, las columnas `fecha` y `total` tendrán valores de `p.fecha` y `p.total` respectivamente.\n\nLa diferencia principal con INNER JOIN es que LEFT JOIN devuelve *todas* las filas de la tabla de la izquierda, incluso si no hay una coincidencia en la tabla de la derecha.  INNER JOIN solo devuelve las filas donde la condición de unión es verdadera.\n\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la ",
+        "timestamp": "15:44:51",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nRAG (Retrieval-Augmented Generation) es una técnica en IA que mejora la calidad de la generación de texto.  En esencia, **busca información relevante en una base de datos externa y la usa para alimentar un modelo de IA (como un LLM)**.\n\nAquí te lo explico con ejemplos:\n\n*   **¿Qué hace?**  En lugar de depender únicamente de la información que el modelo de IA ha sido entrenado, RAG le proporciona al modelo un contexto adicional.\n*   **¿Cómo funciona?**\n    1.  **Recupera:** RAG busca información relevante en una base de datos externa (como una base de datos de conocimiento o un índice de documentos).\n    2.  **Augmente:**  La información recuperada se \"aumenta\" con el texto de la consulta original.\n    3.  **Genera:** El modelo de IA usa esta información combinada para generar una respuesta más precisa y completa.\n\n**Ejemplo sencillo:**\n\nImagina que tienes un modelo de IA que escribe descripciones de productos.  RAG le da al modelo un contexto como: \"El producto es un teléfono inteligente con cámara de 48MP y procesador Snapdragon 8 Gen 2.\"  Luego, el modelo puede generar una descripción mucho mejor, ya que tiene informaci",
+        "timestamp": "15:45:24"
+    },
+    {
+        "usuario": "¿Qué es una variable en Python?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la base documental.\n\n📊 Similitud:\n64.66%\n",
+        "timestamp": "15:46:00",
+        "rag_sources": [
+            {
+                "source": "# PYTHON - GUÍA COMPLETA PARA DESAR.txt",
+                "similarity": 0.647
+            },
+            {
+                "source": "Definición y uso.txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "9. BUENAS PRÁCTICAS.txt",
+                "similarity": 0.543
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "\n⚠️ Error al generar respuesta.\n\nVerifica que:\n\n✅ Ollama esté abierto\n✅ El modelo esté instalado\n✅ El servicio esté ejecutándose\n",
+        "timestamp": "16:04:07"
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nRAG (Retrieval-Augmented Generation) es una técnica en IA que combina la generación de texto con la recuperación de información externa.  En lugar de depender únicamente de su propio conocimiento, un modelo de IA (como un LLM) consulta una base de datos externa para obtener información relevante que pueda usar para generar una respuesta más precisa y completa.\n\n**En términos sencillos:** Imagina que estás escribiendo un libro. En lugar de escribir todo el libro tú mismo, le das al modelo la información que necesita (por ejemplo, un resumen de un tema) y le pide que escriba la continuación.\n\n**Ejemplo:**  Si le preguntas a un modelo de lenguaje \"Qué es la fotosíntesis?\", RAG le proporcionaría la información sobre la fotosíntesis, la fuente de la información, y el modelo usará esa información para generar una respuesta más completa.\n\n**En resumen:** RAG es una forma de mejorar la calidad de las respuestas de los modelos de IA al proporcionarles acceso a información externa.\n\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del model",
+        "timestamp": "16:06:57"
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nLEFT JOIN en SQL es una operación que combina datos de dos tablas basándose en una condición.  En esencia, devuelve *todos* los registros de la tabla de la izquierda y los registros de la tabla de la derecha donde la condición de unión sea verdadera.  Si no hay coincidencias, devuelve todos los registros de la tabla de la derecha.\n\nAquí tienes un ejemplo SQL:\n\n```sql\nSELECT u.nombre, p.id\nFROM usuarios u\nLEFT JOIN pedidos p ON u.id = p.usuario_id;\n```\n\nEn este ejemplo:\n\n*   `SELECT u.nombre, p.id` selecciona el nombre de la tabla `usuarios` y el ID de la tabla `pedidos`.\n*   `FROM usuarios u` especifica la tabla `usuarios` como la tabla de la izquierda.\n*   `LEFT JOIN pedidos p ON u.id = p.usuario_id` especifica que se realiza un LEFT JOIN con la tabla `pedidos` (la tabla de la derecha) basándose en la condición `u.id = p.usuario_id`.\n\nEn resumen, el LEFT JOIN devuelve *todos* los registros de la tabla de la izquierda (usuarios) y los registros de la tabla de la derecha (pedidos) donde existe una coincidencia.  Si no hay coincidencia, devuelve los registros de la tabla de la izquierda.\n\nEs importante notar la diferencia c",
+        "timestamp": "16:07:33",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Cómo funciona LEFT JOIN en SQL?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nLEFT JOIN en SQL es una operación que combina datos de dos tablas basándose en una condición.  En esencia, devuelve *todos* los registros d\n\nde la tabla a la izquierda, incluso si no hay una coincidencia en la tabla a la derecha.  Si hay una coincidencia, devuelve la fila correspondiente de la tabla a la derecha.  \n\nAquí tienes un ejemplo SQL:\n\n```sql\nSELECT\n    u.nombre,\n    p.fecha,\n    p.total\nFROM\n    usuarios u\nLEFT JOIN\n    pedidos p ON u.id = p.usuario_id\nWHERE\n    p.total > 1000;\n```\n\nEn este ejemplo, recuperamos todos los usuarios (`u`) y sus pedidos (`p`), pero solo los pedidos cuyo total sea mayor de 1000.  Si un usuario no tiene ningún pedido, no se mostrarán los resultados.\n\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la base documental.\n\n📄 Documento utilizado:\nJOINS (Uniones de tablas).txt\n\n📊 Similitud:\n54.85%\n\n📖 Fragmento recuperado:\ns u\nRIGHT JOIN pedidos p ON u.id = p.usuario_id;\n\n-- FULL OUTER JOIN (todos los registros de ambas)\nSELECT u.nombre, p.i...\n",
+        "timestamp": "16:15:38",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.526
+            }
+        ]
+    },
+    {
+        "usuario": "¿Qué es RAG en IA?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nRAG (Retrieval Augmented Generation) es una técnica en IA que mejora la calidad de las respuestas generadas por modelos de lenguaje.  En esencia, **busca información relevante en una base de datos externa y la utiliza para contextualizar la respuesta del modelo.**\n\nAquí hay un ejemplo sencillo:\n\nImagina que estás generando una respuesta sobre \"la historia de la inteligencia artificial\".  En lugar de que el modelo de IA simplemente use su conocimiento pre-entrenado, RAG le proporciona un conjunto de documentos (como artículos, libros, etc.) que le ayudan a entender mejor el tema.\n\n**En resumen:** RAG permite que los modelos de IA tengan acceso a información más precisa y actualizada, mejorando la calidad y relevancia de sus respuestas.\n\n**Ejemplo:**\n\nSi le preguntas a un modelo de IA: \"Explica la teoría de la relatividad\",  RAG podría buscar en una base de datos y devolver información sobre Einstein, la teoría de la relatividad, y su impacto en la física.\n\nEspero que esto te ayude a entender mejor el concepto de RAG.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue ge",
+        "timestamp": "16:16:23"
+    },
+    {
+        "usuario": "u´e es un left join en sq",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nEn SQL, un LEFT JOIN se utiliza para combinar filas de dos tablas basándose en una condición.  La clave es que *todos* los registros de la tabla de la izquierda (la que se une) se incluyen en el resultado, mientras que los registros de la tabla de la derecha (la que no se une) se omiten.\n\n**En resumen:**  Un LEFT JOIN devuelve *todos* los registros de la tabla de la izquierda, incluso si no hay coincidencia en la tabla de la derecha.\n\nAquí tienes un ejemplo SQL:\n\n```sql\nSELECT *\nFROM usuarios\nLEFT JOIN clientes\nON usuarios.id = clientes.id;\n```\n\nEste query devolverá todos los usuarios, incluso aquellos que no tienen un cliente asociado.  Si un usuario no tiene un cliente, no aparecerá en el resultado.\n\n**Diferencia con INNER JOIN:**\n\nLa diferencia principal es que un INNER JOIN solo devuelve filas donde la condición de unión es verdadera. Un LEFT JOIN, por el contrario, devuelve *todos* los registros de la tabla izquierda, incluso si no hay coincidencia en la tabla derecha.\n\nEspero que esto te sea útil.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando",
+        "timestamp": "16:57:23"
+    },
+    {
+        "usuario": " left join en sq",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nUn LEFT JOIN en SQL es una operación que combina filas de dos tablas basándose en una condición.  La clave es que *todos* los registros de la tabla de la izquierda (izquierda) se incluyen en el resultado, incluso si no hay coincidencia en la tabla de la derecha (derecha).  En otras palabras, devuelve todas las filas de la tabla de la izquierda y las filas que tienen una coincidencia en la tabla de la derecha.\n\nAquí tienes un ejemplo:\n\n```sql\nSELECT *\nFROM usuarios\nLEFT JOIN clientes\nON usuarios.id = clientes.id;\n```\n\nEn este caso, si un usuario no tiene un cliente asociado, el resultado incluirá todas las filas de la tabla `usuarios`.  Si un usuario *tiene* un cliente, el resultado incluirá la fila del cliente.\n\nLa diferencia con un INNER JOIN es que el LEFT JOIN siempre devuelve todas las filas de la tabla izquierda, incluso si no hay coincidencias en la tabla derecha.  Un INNER JOIN solo devuelve filas donde la condición de unión es verdadera.\n\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n\n📄 Documento utilizado:\n",
+        "timestamp": "16:58:02"
+    },
+    {
+        "usuario": "como perder la materia por bajo rendimiento",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nEl bajo rendimiento de una materia se debe a que el sistema no está procesando las tareas o archivos de manera eficiente.  Esto puede deberse a varios factores:\n\n*   **Carga de la máquina:** Si el servidor no tiene suficiente potencia de procesamiento o memoria, las tareas tardarán más en completarse.\n*   **Problemas de red:** La conexión a Internet lenta o inestable puede retrasar la transferencia de datos.\n*   **Problemas de software:**  El software que se utiliza para procesar las tareas puede estar mal optimizado.\n*   **Problemas de hardware:**  Si el hardware (CPU, memoria, disco duro) es insuficiente, el rendimiento se verá afectado.\n\n**Ejemplo:** Imagina que tienes una base de datos con miles de registros. Si la máquina donde se ejecuta la base de datos está sobrecargada, las consultas pueden tardar más en ejecutarse, lo que ralentiza el proceso.\n\nPara solucionar esto, se pueden realizar optimizaciones como:\n\n*   **Optimizar el código:** Mejorar la eficiencia de las consultas SQL.\n*   **Aumentar la memoria:** Asegurarse de que el sistema tenga suficiente memoria disponible.\n*   **Optimizar el hardware:** Considerar",
+        "timestamp": "17:00:38"
+    },
+    {
+        "usuario": "como p erder la materia por bajo rendimiento",
+        "respuesta": "⚠️ El bajo rendimiento de una materia se debe a que el sistema no está procesando las tareas o archivos de manera eficiente. Esto puede deberse a varios factores:\n\n*   **Problemas de hardware:** Un CPU lento, memoria insuficiente o disco duro lento pueden ralentizar el procesamiento.\n*   **Problemas de software:** El software que se utiliza para la materia (ej. sistema de gestión de aprendizaje, software de gestión de tareas) puede estar mal optimizado.\n*   **Problemas de red:** Una conexión de red lenta o inestable puede afectar la velocidad de transferencia de datos.\n*   **Problemas de carga:** Si hay demasiados usuarios o tareas simultáneas, el sistema puede tener dificultades para manejar la carga.\n\n**Ejemplo:** Si un estudiante está intentando acceder a un archivo de tarea que tarda mucho en ser cargado, esto indica un problema de rendimiento.\n\nPara diagnosticar el problema, es importante analizar el tiempo que tarda en completar una tarea específica, identificar cuellos de botella en el proceso y optimizar el software y el hardware.\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del",
+        "timestamp": "17:01:21"
+    },
+    {
+        "usuario": "¿Qué es recursividad?",
+        "respuesta": "⚠️ Recursividad es un concepto fundamental en la programación que permite que una función se llame a sí misma.  En esencia, es una técnica que se usa para resolver problemas de manera que el mismo problema se resuelva repetidamente.\n\n**Aquí hay una explicación simplificada:**\n\nImagina que tienes que encontrar un número en una lista.  Puedes hacer lo siguiente:\n\n1.  Encuentra el primer número en la lista.\n2.  Ahora, debes encontrar el *segundo* número en la lista, pero esta vez, en lugar de buscarlo de nuevo, la función *se llama a sí misma* para encontrar el *tercer* número.\n3.  Continúa este proceso hasta que encuentres el número que buscas.\n\n**En programación, la recursividad se usa cuando una función se define en términos de sí misma.**  Es decir, la función se llama a sí misma para resolver un problema más pequeño.\n\n**Ejemplo simple:**\n\n```python\ndef factorial(n):\n  if n == 0:\n    return 1\n  else:\n    return n * factorial(n-1)\n\nprint(factorial(5))  # Imprime 120\n```\n\nEn este ejemplo, `factorial(n)` se llama a sí misma para calcular el factorial de `n`.\n\n**¿Por qué usar recursividad?**\n\n*   **Simplicidad:** A veces, la recursividad puede hacer que el código sea más fácil de ente",
+        "timestamp": "17:52:09"
+    },
+    {
+        "usuario": "¿Qué es una variable en Python?",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nUna variable en Python es un nombre que se usa para almacenar un valor.  Puedes asignarle un valor, y ese valor puede cambiar a lo largo del tiempo.  Piensa en una variable como una caja donde puedes guardar algo.\n\nAquí tienes un ejemplo sencillo:\n\n```python\nedad = 25\nprint(\"Tu edad es:\", edad)\n```\n\nEn este ejemplo, `edad` es una variable que almacena un valor entero (25).  Cuando ejecutas el código, la variable `edad` se asigna el valor 25, y luego se imprime en la consola.\n\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la base documental.\n\n📄 Documento utilizado:\n# PYTHON - GUÍA COMPLETA PARA DESAR.txt\n\n📊 Similitud:\n64.66%\n\n📖 Fragmento recuperado:\n# PYTHON - GUÍA COMPLETA PARA DESARROLLADORES\n\n## 1. FUNDAMENTOS DE PYTHON\n\n### 1.1 Variables y Tipos de Datos\nPython es...\n",
+        "timestamp": "17:52:29",
+        "rag_sources": [
+            {
+                "source": "# PYTHON - GUÍA COMPLETA PARA DESAR.txt",
+                "similarity": 0.647
+            },
+            {
+                "source": "Definición y uso.txt",
+                "similarity": 0.549
+            },
+            {
+                "source": "9. BUENAS PRÁCTICAS.txt",
+                "similarity": 0.543
+            }
+        ]
+    },
+    {
+        "usuario": "sql",
+        "respuesta": "```text\nUna variable en SQL es un nombre que se usa para almacenar un valor.  Es como una etiqueta que le asignas a un dato específico, permitiéndote manipularlo o usarlo en tus consultas.\n\n**Ejemplo:**\n\n```sql\nSELECT * FROM usuarios WHERE nombre = 'Juan';\n```\n\nEn este ejemplo, 'nombre' es la variable que almacena el valor de la columna 'nombre' de la tabla 'usuarios'.\n```\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n\n📄 Documento utilizado:\nNinguno\n",
+        "timestamp": "17:53:49"
+    },
+    {
+        "usuario": "¿Qué es RAG ",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nRAG (Retrieval-Augmented Generation) es una técnica que combina la recuperación de información con la generación de texto.  En esencia, le damos a un modelo de lenguaje (como ChatGPT) un contexto más amplio, y luego le pedimos que genere una respuesta basada en ese contexto.  Piensa en ello como darle al modelo un resumen de la información relevante antes de que escriba la respuesta final.\n\n**Ejemplo:**  Si le preguntas a RAG sobre la historia de Roma, RAG le mostrará un resumen de la historia romana, incluyendo eventos clave, figuras importantes, y la evolución del imperio.  Luego, RAG usará ese resumen para generar una respuesta sobre la historia de Roma.\n\nEn resumen, RAG mejora la calidad de las respuestas de los modelos de lenguaje al proporcionarles información adicional relevante.\n\n\n---\n\n# 📚 Información RAG\n\n⚠️ No se encontró contexto relevante\nen la base documental.\n\nLa respuesta fue generada usando\nconocimiento general del modelo.\n\n📄 Documento utilizado:\nNinguno\n",
+        "timestamp": "17:54:33"
+    },
+    {
+        "usuario": "LEFT JOIN en SQL",
+        "respuesta": "⚠️ Solo puedo responder temas de programación y tecnología.\n\nLa cláusula `LEFT JOIN` en SQL busca registros de una tabla (la tabla izquierda) que no existen en otra tabla (la tabla derecha).  Si un registro en la tabla izquierda no tiene una coincidencia en la tabla derecha, la columna de la tabla izquierda se asigna a `NULL`.  En resumen, devuelve todos los registros de la tabla izquierda, y si no hay coincidencia, devuelve `NULL` para las columnas de la tabla derecha.\n\n**Ejemplo SQL:**\n\n```sql\nSELECT *\nFROM usuarios\nLEFT JOIN pedidos\nON usuarios.id = pedidos.usuario_id;\n```\n\nEste ejemplo devuelve todos los usuarios y sus pedidos.  Si un usuario no tiene ningún pedido, la columna `id` de la tabla `pedidos` se asignará a `NULL`.\n\nLa diferencia clave con un `INNER JOIN` es que `INNER JOIN` solo devuelve registros donde existe una coincidencia en ambas tablas.  Si un usuario no tiene ningún pedido, la columna `id` de la tabla `pedidos` no se asignará a `NULL`.\n\n\n---\n\n# 📚 Información RAG\n\n✅ Se utilizó información\nde la base documental.\n\n📄 Documento utilizado:\nJOINS (Uniones de tablas).txt\n\n📊 Similitud:\n55.03%\n\n📖 Fragmento recuperado:\ns u\nRIGHT JOIN pedidos p ON u.id = p.usuario_id;\n\n-",
+        "timestamp": "17:55:09",
+        "rag_sources": [
+            {
+                "source": "JOINS (Uniones de tablas).txt",
+                "similarity": 0.55
+            }
+        ]
     }
 ]

@@ -17,13 +17,13 @@ rag = RAGPipeline()
 print("✅ RAG listo!")
 
 # ==============================
-# CONFIG MODELO LOCAL
+# CONFIG MODELO
 # ==============================
 
 MODEL_NAME = "gemma3:1b"
 
 # ==============================
-# CACHÉ
+# CACHE
 # ==============================
 
 respuestas_cache = {}
@@ -36,79 +36,185 @@ cache_misses = 0
 # ==============================
 
 system_instruction = """
-Eres un Tutor experto en Programación.
+Eres CodeDragon, un tutor experto en programación.
 
 OBJETIVO:
-- Explicar conceptos de programación.
-- Responder de forma clara y educativa.
-- Utilizar el contexto RAG como fuente principal.
+Responder preguntas técnicas de programación
+de forma clara, útil y resumida.
 
 REGLAS:
-- NO inventes información.
-- Si existe contexto RAG, úsalo.
-- Responde corto y claro.
-- Usa ejemplos simples.
-- Si la pregunta no tiene relación con programación,
-  indícalo educadamente.
+
+1. Usa contexto RAG si existe.
+2. Si no existe contexto RAG, usa conocimiento general.
+3. NO inventes información falsa.
+4. Responde de forma educativa pero breve.
+5. Explica solo lo importante.
+6. Usa ejemplos pequeños cuando ayuden.
+7. Usa Markdown simple.
+
+8. SOLO responde preguntas de:
+- programación
+- software
+- tecnología
+- desarrollo
+- IA
+- bases de datos
+- DevOps
+- ciberseguridad
+
+9. Si la pregunta NO es técnica:
+responde EXACTAMENTE:
+
+"⚠️ Solo puedo responder temas de programación y tecnología."
+
+ESTILO:
+- profesional
+- amigable
+- claro
+- técnico pero entendible
 """
 
 # ==============================
-# PALABRAS CLAVE
+# PALABRAS PROGRAMACIÓN
 # ==============================
 
 PALABRAS_PROGRAMACION = [
 
-    "python",
-    "sql",
-    "java",
-    "javascript",
-    "html",
-    "css",
-    "programacion",
-    "algoritmo",
-    "codigo",
-    "funcion",
-    "variable",
-    "base de datos",
-    "join",
-    "api",
-    "backend",
-    "frontend",
-    "flask",
-    "react",
-    "lista",
-    "diccionario",
-    "loop",
-    "for",
-    "while",
-    "if",
-    "else",
-    "poo",
-    "objeto",
-    "clase",
-    "excepcion",
-    "error",
-    "debug",
+    # Lenguajes
+    "python", "java", "javascript",
+    "typescript", "c++", "c#",
+    "php", "ruby", "go", "rust",
+    "kotlin", "swift", "dart",
 
-    # NUEVAS
-    "practica",
-    "practicas",
-    "modulo",
-    "modulos",
-    "paquete",
-    "archivo",
-    "rendimiento",
-    "software",
-    "desarrollo",
-    "sistema",
-    "datos",
-    "contraseña",
+    # Frameworks
+    "django", "flask", "fastapi",
+    "spring", "express", "nestjs",
+    "laravel", "rails",
+
+    # Frontend
+    "react", "vue", "angular",
+    "svelte", "nextjs",
+
+    # CSS
+    "css", "scss", "sass",
+    "tailwind", "bootstrap",
+
+    # Bases de datos
+    "sql", "mysql", "postgresql",
+    "sqlite", "mongodb", "redis",
+    "firebase", "supabase",
+
+    # Programación
+    "programacion",
+    "codigo",
+    "algoritmo",
+    "estructura de datos",
+    "variable",
+    "funcion",
+    "metodo",
+    "clase",
+    "objeto",
+
+    # Algoritmos
+    "big o",
     "recursividad",
-    "recursivo",
-    "lambda",
-    "decorador",
-    "generador",
-    "yield"
+    "backtracking",
+    "programacion dinamica",
+
+    # Web
+    "api",
+    "rest",
+    "graphql",
+    "frontend",
+    "backend",
+    "fullstack",
+
+    # HTML
+    "html",
+    "div",
+    "span",
+    "form",
+    "input",
+
+    # JavaScript
+    "json",
+    "async",
+    "await",
+    "fetch",
+    "axios",
+
+    # React
+    "hooks",
+    "usestate",
+    "useeffect",
+    "redux",
+    "jsx",
+
+    # SQL
+    "select",
+    "insert",
+    "update",
+    "delete",
+    "join",
+
+    # Git
+    "git",
+    "github",
+    "gitlab",
+    "commit",
+    "push",
+    "pull",
+
+    # DevOps
+    "docker",
+    "kubernetes",
+    "terraform",
+    "jenkins",
+
+    # Cloud
+    "aws",
+    "azure",
+    "gcp",
+
+    # IA
+    "inteligencia artificial",
+    "machine learning",
+    "deep learning",
+    "llm",
+    "rag",
+    "ollama",
+    "gemma",
+    "mistral",
+    "gpt",
+
+    # Librerías
+    "tensorflow",
+    "pytorch",
+    "pandas",
+    "numpy",
+
+    # Seguridad
+    "xss",
+    "csrf",
+    "sql injection",
+    "bcrypt",
+
+    # Herramientas
+    "linux",
+    "bash",
+    "terminal",
+    "vscode",
+    "npm",
+    "pip",
+
+    # Acciones
+    "instalar",
+    "configurar",
+    "compilar",
+    "deploy",
+    "debug",
+    "error",
+    "corregir"
 ]
 
 # ==============================
@@ -117,15 +223,272 @@ PALABRAS_PROGRAMACION = [
 
 def es_tema_programacion(texto):
 
-    texto = texto.lower()
+    # ==========================
+    # VALIDAR VACÍO
+    # ==========================
 
-    coincidencias = sum(
-        1 for palabra in PALABRAS_PROGRAMACION
-        if palabra in texto
+    if not texto:
+        return False
+
+    texto = texto.lower().strip()
+
+    # ==========================
+    # MUY CORTO
+    # ==========================
+
+    if len(texto) < 3:
+        return False
+
+    # ==========================
+    # NORMALIZAR
+    # ==========================
+
+    caracteres = [
+
+        ",", ".", "-", "_",
+        "(", ")", "[", "]",
+        "{", "}", ":", ";",
+        "!", "?", "/", "\\",
+        "'", '"', "\n", "\t",
+        "*", "+", "="
+    ]
+
+    for c in caracteres:
+        texto = texto.replace(c, " ")
+
+    texto = " ".join(texto.split())
+
+    # ==========================
+    # PALABRAS NO TECH
+    # ==========================
+
+    PALABRAS_NO_TECH = {
+
+        "hola",
+        "hi",
+        "hey",
+        "hello",
+
+        "jaja",
+        "jeje",
+        "xd",
+
+        "pizza",
+        "hamburguesa",
+
+        "gato",
+        "perro",
+
+        "futbol",
+        "baloncesto",
+        "musica",
+        "pelicula",
+
+        "novia",
+        "novio",
+        "sexo",
+        "porno",
+
+        "clima",
+        "lluvia",
+        "receta",
+        "cocina"
+    }
+
+    # ==========================
+    # FRASES NO TECH
+    # ==========================
+
+    FRASES_NO_TECH = [
+
+        "como estas",
+        "quien eres",
+        "como te llamas",
+        "mejor jugador",
+        "mejor equipo",
+        "partido de futbol",
+        "donde ver futbol",
+        "receta de cocina",
+        "como esta el clima",
+        "quien gano el partido"
+    ]
+
+    # ==========================
+    # BLOQUEAR FRASES
+    # ==========================
+
+    for frase in FRASES_NO_TECH:
+
+        if frase in texto:
+            return False
+
+    # ==========================
+    # TOKENIZAR
+    # ==========================
+
+    palabras = texto.split()
+
+    # ==========================
+    # CONTADORES
+    # ==========================
+
+    score_programacion = 0
+    score_no_tech = 0
+
+    # ==========================
+    # CONTAR NO TECH
+    # ==========================
+
+    for palabra in palabras:
+
+        if palabra in PALABRAS_NO_TECH:
+            score_no_tech += 1
+
+    # ==========================
+    # PALABRAS EXTRA TECH
+    # ==========================
+
+    PALABRAS_EXTRA = [
+
+        "programador",
+        "programacion",
+        "developer",
+        "desarrollador",
+        "desarrollo",
+        "codigo",
+        "software",
+        "tecnologia",
+        "informatica",
+        "computacion",
+        "app",
+        "aplicacion",
+        "pagina web",
+        "sitio web",
+        "web",
+        "backend",
+        "frontend",
+        "fullstack",
+        "base de datos",
+        "inteligencia artificial",
+        "machine learning",
+        "ia",
+        "algoritmo",
+        "bug",
+        "debug",
+        "error",
+        "servidor",
+        "api",
+        "docker",
+        "linux",
+        "github",
+        "git"
+    ]
+
+    # ==========================
+    # UNIR LISTAS
+    # ==========================
+
+    TODOS_LOS_TERMINOS = (
+        PALABRAS_PROGRAMACION +
+        PALABRAS_EXTRA
     )
 
-    return coincidencias >= 1
+    # ==========================
+    # BUSCAR FRASES TECH
+    # ==========================
 
+    for termino in TODOS_LOS_TERMINOS:
+
+        termino = termino.lower()
+
+        # frase exacta
+        if termino == texto:
+            score_programacion += 5
+            continue
+
+        # frase contenida
+        if termino in texto:
+            score_programacion += 3
+
+    # ==========================
+    # BUSCAR POR PALABRAS
+    # ==========================
+
+    for palabra_usuario in palabras:
+
+        if len(palabra_usuario) < 3:
+            continue
+
+        for termino in TODOS_LOS_TERMINOS:
+
+            termino = termino.lower()
+
+            # exacta
+            if palabra_usuario == termino:
+                score_programacion += 2
+                continue
+
+            # parcial inteligente
+            if (
+
+                len(palabra_usuario) >= 5
+                and palabra_usuario in termino
+
+            ):
+                score_programacion += 1
+
+            elif (
+
+                len(termino) >= 5
+                and termino in palabra_usuario
+
+            ):
+                score_programacion += 1
+
+    # ==========================
+    # DETECTAR PREGUNTAS TECH
+    # ==========================
+
+    preguntas_tech = [
+
+        "como hacer",
+        "como crear",
+        "como instalar",
+        "como configurar",
+        "como programar",
+        "como desarrollar",
+        "como usar",
+        "como funciona",
+        "que es",
+        "error en",
+        "problema con"
+    ]
+
+    for patron in preguntas_tech:
+
+        if patron in texto:
+
+            for termino in TODOS_LOS_TERMINOS:
+
+                if termino in texto:
+                    score_programacion += 2
+                    break
+
+    # ==========================
+    # BALANCE FINAL
+    # ==========================
+
+    if score_no_tech > score_programacion:
+        return False
+
+    # ==========================
+    # VALIDACIÓN FINAL
+    # ==========================
+
+    if score_programacion >= 2:
+        return True
+
+    return False
 # ==============================
 # FUNCIÓN PRINCIPAL
 # ==============================
@@ -144,14 +507,16 @@ def responder(pregunta):
     )
 
     # ==========================
-    # CACHÉ
+    # CACHE
     # ==========================
 
     if pregunta_normalizada in respuestas_cache:
 
         cache_hits += 1
 
-        print(f"💾 Caché usado | Hits: {cache_hits}")
+        print(
+            f"💾 Caché usado | Hits: {cache_hits}"
+        )
 
         return respuestas_cache[
             pregunta_normalizada
@@ -163,46 +528,191 @@ def responder(pregunta):
         f"🤖 Consultando Ollama | Misses: {cache_misses}"
     )
 
-    # ==========================
+     # ==========================
     # CONSULTAR RAG
     # ==========================
 
     rag_result = rag.query(pregunta)
 
-    tiene_contexto = rag_result[
-        "has_context"
-    ]
+    tiene_contexto = (
+        rag_result.get(
+            "has_context",
+            False
+        )
+    )
 
     # ==========================
     # VALIDAR SIMILITUD
     # ==========================
 
-    similaridad_minima = 0.30
+    # ⚠️ 0.18 era muy bajo
+    # activaba RAG casi siempre
+
+    similaridad_minima = 0.45
 
     hay_similitud = False
 
-    if tiene_contexto:
+    score = 0.0
+
+    fuente_nombre = ""
+
+    preview_texto = ""
+
+    # ==========================
+    # OBTENER SOURCES
+    # ==========================
+
+    sources = rag_result.get(
+        "sources",
+        []
+    )
+
+    # ==========================
+    # VALIDAR CONTEXTO
+    # ==========================
+
+    if tiene_contexto and sources:
 
         try:
 
-            score = rag_result[
-                "sources"
-            ][0][1]
+            # ======================
+            # PRIMER RESULTADO
+            # ======================
+
+            primer_resultado = sources[0]
+
+            documento = primer_resultado[0]
+
+            score = float(
+                primer_resultado[1]
+            )
+
+            # ======================
+            # METADATA
+            # ======================
+
+            metadata = documento.get(
+                "metadata",
+                {}
+            )
+
+            fuente_nombre = metadata.get(
+                "source",
+                "desconocido"
+            )
+
+            # ======================
+            # CONTENIDO
+            # ======================
+
+            contenido = documento.get(
+                "content",
+                ""
+            )
+
+            preview_texto = contenido[:150]
+
+            # ======================
+            # DEBUG
+            # ======================
+
+            print("\n====================")
+            print("📚 RESULTADO RAG")
+            print("====================")
 
             print(
-                f"📊 Similaridad encontrada: {score}"
+                f"📊 Similaridad: "
+                f"{score:.2%}"
             )
+
+            print(
+                f"📄 Archivo: "
+                f"{fuente_nombre}"
+            )
+
+            print(
+                f"📖 Preview: "
+                f"{preview_texto[:80]}..."
+            )
+
+            # ======================
+            # VALIDAR UMBRAL
+            # ======================
 
             if score >= similaridad_minima:
 
                 hay_similitud = True
 
+                print(
+                    f"✅ RAG ACTIVADO "
+                    f"(>= {similaridad_minima:.0%})"
+                )
+
+            else:
+
+                print(
+                    f"❌ RAG IGNORADO "
+                    f"(< {similaridad_minima:.0%})"
+                )
+
+                # Limpiar basura
+
+                score = 0.0
+
+                fuente_nombre = ""
+
+                preview_texto = ""
+
         except Exception as e:
 
             print(
-                "⚠️ Error validando similitud:",
-                e
+                f"⚠️ Error validando "
+                f"similitud: {e}"
             )
+
+            hay_similitud = False
+
+            score = 0.0
+
+            fuente_nombre = ""
+
+            preview_texto = ""
+
+    else:
+
+        print(
+            "📭 No se encontró "
+            "contexto relevante"
+        )
+
+    # ==========================
+    # PORCENTAJE RAG
+    # ==========================
+
+    porcentaje_rag = (
+
+        round(score * 100, 2)
+
+        if hay_similitud
+
+        else 0
+
+    )
+
+    # ==========================
+    # INFO DE FUENTE
+    # ==========================
+
+    info_fuente = {
+
+        "nombre": fuente_nombre,
+
+        "similitud": porcentaje_rag,
+
+        "preview": preview_texto,
+
+        "usado": hay_similitud
+    }
 
     # ==========================
     # VALIDAR TEMA
@@ -215,32 +725,24 @@ def responder(pregunta):
     )
 
     # ==========================
-    # BLOQUEAR SI NO ES RELEVANTE
+    # BLOQUEAR NO TECH
     # ==========================
 
-    if not hay_similitud and not tema_programacion:
+    if (
 
-        respuesta_texto = f"""
-⚠️ No se encontró información relacionada
-en la base de conocimiento RAG.
+        not hay_similitud
 
-Este asistente está especializado en:
+        and
 
-✅ Programación
-✅ Python
-✅ SQL
-✅ Bases de datos
-✅ Algoritmos
-✅ Desarrollo de software
+        not tema_programacion
 
-Pregunta recibida:
-"{pregunta}"
+    ):
 
-Por favor realiza una pregunta relacionada
-con programación o los documentos cargados.
-"""
-
-        return respuesta_texto
+        return (
+            "⚠️ Solo puedo responder "
+            "temas de programación "
+            "y tecnología."
+        )
 
     # ==========================
     # HISTORIAL
@@ -249,7 +751,7 @@ con programación o los documentos cargados.
     historial = cargar_historial()
 
     # ==========================
-    # PROMPT
+    # CONSTRUIR MENSAJE
     # ==========================
 
     mensaje = ""
@@ -260,34 +762,76 @@ con programación o los documentos cargados.
 
     if hay_similitud:
 
-        contexto = rag_result[
-            "context"
-        ][:900]
+        contexto = rag_result.get(
+            "context",
+            ""
+        )[:1500]
 
         mensaje += f"""
-CONTEXTO RAG:
+# CONTEXTO RAG
 
 {contexto}
 
+# INFORMACIÓN RAG
+
+✅ Contexto encontrado
+
+📄 Archivo fuente:
+{fuente_nombre}
+
+📊 Similitud:
+{porcentaje_rag}%
+
+# INSTRUCCIONES IMPORTANTES
+
+- Responde usando principalmente
+  el contexto RAG.
+
+- Si el contexto no tiene suficiente
+  información, dilo claramente.
+
+- NO inventes información.
+
+- Usa respuestas claras y resumidas.
+"""
+
+    else:
+
+        mensaje += """
+# CONTEXTO
+
+No se encontró contexto relevante
+en los documentos.
+
+Puedes responder usando
+conocimiento general.
+
+IMPORTANTE:
+- Aclara que la respuesta NO viene
+  de documentos RAG.
 """
 
     # ==========================
     # HISTORIAL RECIENTE
     # ==========================
 
-    for h in historial[-1:]:
+    for h in historial[-2:]:
 
         pregunta_hist = h[
             "usuario"
-        ][:80]
+        ][:120]
 
         respuesta_hist = h[
             "respuesta"
-        ][:120]
+        ][:200]
 
         mensaje += f"""
-E: {pregunta_hist}
-T: {respuesta_hist}
+
+Pregunta previa:
+{pregunta_hist}
+
+Respuesta previa:
+{respuesta_hist}
 """
 
     # ==========================
@@ -296,20 +840,50 @@ T: {respuesta_hist}
 
     mensaje += f"""
 
-Pregunta:
-{pregunta[:200]}
+# PREGUNTA
 
-Respuesta:
+{pregunta[:300]}
+
+# INSTRUCCIONES
+
+- Responde claro y resumido.
+- Explica solo lo importante.
+- Usa ejemplos pequeños.
+- Usa Markdown.
+- No hagas respuestas demasiado largas.
+
+# RESPUESTA
 """
 
     # ==========================
-    # PROMPT FINAL
+    # MEJORAS SEGÚN PREGUNTA
     # ==========================
 
-    prompt_final = f"""
-{system_instruction}
+    pregunta_lower = pregunta.lower()
 
-{mensaje}
+    if "join" in pregunta_lower:
+
+        mensaje += """
+
+IMPORTANTE:
+- Explica diferencia con INNER JOIN
+- Incluye ejemplo SQL corto
+"""
+
+    if "python" in pregunta_lower:
+
+        mensaje += """
+
+IMPORTANTE:
+Incluye un ejemplo corto en Python.
+"""
+
+    if "algoritmo" in pregunta_lower:
+
+        mensaje += """
+
+IMPORTANTE:
+Explica el algoritmo paso a paso.
 """
 
     # ==========================
@@ -337,15 +911,17 @@ Respuesta:
 
             options={
 
-                "temperature": 0.2,
-
-                "num_predict": 250,
-
-                "top_p": 0.8,
-
-                "top_k": 20
+                "temperature": 0.5,
+                "num_predict": 350,
+                "top_p": 0.9,
+                "top_k": 40,
+                "repeat_penalty": 1.1
             }
         )
+
+        # ======================
+        # RESPUESTA MODELO
+        # ======================
 
         respuesta_texto = response[
             "message"
@@ -354,33 +930,60 @@ Respuesta:
         ]
 
         # ======================
-        # 🆕 AVISO SI NO SE USÓ RAG
+        # INFO RAG
         # ======================
 
-        if not hay_similitud:
+        if hay_similitud:
 
-            aviso = """
+            respuesta_texto += f"""
 
-⚠️ Nota:
-Esta respuesta fue generada por el modelo de IA
-y NO se encontró información relevante en la base de datos (RAG).
+---
 
-Puede no estar basada en los documentos cargados.
+# 📚 Información RAG
+
+✅ Se utilizó información
+de la base documental.
+
+📄 Documento utilizado:
+{fuente_nombre}
+
+📊 Similitud:
+{porcentaje_rag}%
+
+📖 Fragmento recuperado:
+{preview_texto[:120]}...
 """
 
-            respuesta_texto = respuesta_texto + aviso
+        else:
+
+            respuesta_texto += """
+
+---
+
+# 📚 Información RAG
+
+⚠️ No se encontró contexto relevante
+en la base documental.
+
+La respuesta fue generada usando
+conocimiento general del modelo.
+
+📄 Documento utilizado:
+Ninguno
+"""
 
         # ======================
         # LIMITAR RESPUESTA
         # ======================
 
-        if len(respuesta_texto) > 1200:
+        if len(respuesta_texto) > 2200:
 
             respuesta_texto = (
-                respuesta_texto[:1200]
+                respuesta_texto[:2200]
                 + "\n\n[Respuesta truncada]"
             )
 
+        
     # ==========================
     # ERROR OLLAMA
     # ==========================
@@ -394,30 +997,24 @@ Puede no estar basada en los documentos cargados.
             error_msg
         )
 
-        # ======================
-        # FALLBACK RAG
-        # ======================
-
         if hay_similitud:
 
             contexto_local = rag_result[
                 "context"
-            ][:700]
+            ][:1000]
 
             respuesta_texto = f"""
-⚠️ Ollama no disponible.
+# ⚠️ Ollama no disponible
 
-📚 Información encontrada
-en documentos locales:
+El sistema RAG encontró información relevante.
+
+# 📚 Contexto recuperado
 
 {contexto_local}
 
------------------------------------
+# ❓ Pregunta
 
-Pregunta:
 {pregunta}
-
-✅ El sistema RAG recuperó información correctamente.
 """
 
         else:
@@ -428,19 +1025,19 @@ Pregunta:
 Verifica que:
 
 ✅ Ollama esté abierto
-✅ El modelo gemma3:1b esté instalado
-✅ El servicio Ollama esté ejecutándose
+✅ El modelo esté instalado
+✅ El servicio esté ejecutándose
 """
 
     # ==========================
-    # GUARDAR EN CACHÉ
+    # GUARDAR CACHE
     # ==========================
 
     respuestas_cache[
         pregunta_normalizada
     ] = respuesta_texto
 
-    # Limitar tamaño caché
+    # Limitar caché
 
     if len(respuestas_cache) > 50:
 
@@ -448,7 +1045,9 @@ Verifica que:
             respuestas_cache.keys()
         )[0]
 
-        del respuestas_cache[primera]
+        del respuestas_cache[
+            primera
+        ]
 
     # ==========================
     # GUARDAR HISTORIAL
@@ -458,11 +1057,11 @@ Verifica que:
 
         pregunta[:300],
 
-        respuesta_texto[:1000]
+        respuesta_texto[:1200]
     )
 
     # ==========================
-    # GUARDAR FUENTES
+    # GUARDAR FUENTES RAG
     # ==========================
 
     if hay_similitud:
@@ -507,7 +1106,7 @@ Verifica que:
     return respuesta_texto
 
 # ==============================
-# ESTADÍSTICAS
+# ESTADÍSTICAS CACHE
 # ==============================
 
 def get_cache_stats():

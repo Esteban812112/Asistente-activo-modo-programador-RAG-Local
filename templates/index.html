@@ -3,497 +3,650 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayuda de Programación · Asistente Técnico con RAG</title>
+    <title>🐉 CodeDragon · Asistente de Programación con RAG</title>
     <style>
-        /* Reset y estilo base de terminal/IDE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', 'Andale Mono', monospace;
         }
 
         body {
-            background-color: #0a0c0f;
-            background-image: radial-gradient(#1e2a3a 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
+            background: linear-gradient(135deg, #0a0f1a 0%, #0f172a 50%, #0a0f1a 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: #e3e6eb;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         .container {
-            width: 90%;
-            max-width: 1100px;
-            background: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 0 1px #2d3a4e inset;
+            width: 95%;
+            max-width: 1300px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.2) inset;
             overflow: hidden;
         }
 
-        /* Barra de estado tipo IDE */
-        .status-bar {
-            background: #161b22;
-            padding: 10px 20px;
-            border-bottom: 1px solid #30363d;
+        .gradient-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 16px 28px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            color: #8b949e;
-            font-size: 0.85rem;
-        }
-
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            background: #2e8b57;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #2e8b57;
-        }
-
-        .status-text {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .file-tab {
-            background: #1f2937;
-            padding: 4px 12px;
-            border-radius: 6px;
-            color: #e6edf3;
-            border: 1px solid #3e4a5a;
-            margin-left: auto;
-            font-size: 0.8rem;
-        }
-
-        /* cabecera */
-        .header {
-            padding: 24px 28px 12px 28px;
-            border-bottom: 1px solid #21262d;
-        }
-
-        .header h1 {
-            font-size: 1.9rem;
-            font-weight: 500;
-            color: #79c0ff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .header h1 span {
-            background: #2e8b57;
-            color: #0d1117;
-            font-size: 0.9rem;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            border: 1px solid #3fb950;
-        }
-
-        .header p {
-            color: #8b949e;
-            font-size: 0.95rem;
-            margin-top: 8px;
-            border-left: 3px solid #2e8b57;
-            padding-left: 16px;
-        }
-
-        /* zona de entrada tipo REPL */
-        .input-area {
-            padding: 28px;
-            background: #010409;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .prompt-line {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #7ee787;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        .prompt-line .chevron {
-            color: #ffa657;
-            font-size: 1.2rem;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
             flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .input-group input {
-            flex: 1;
-            min-width: 250px;
-            background: #0d1117;
-            border: 1px solid #3c434d;
-            padding: 14px 18px;
-            border-radius: 8px;
-            color: #e6edf3;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.15s;
-            font-family: 'Fira Code', monospace;
-        }
-
-        .input-group input:focus {
-            border-color: #2e8b57;
-            box-shadow: 0 0 0 3px rgba(46, 139, 86, 0.3);
-        }
-
-        .input-group button {
-            background: #238636;
-            border: 1px solid #2e8b57;
-            color: white;
-            padding: 0 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: 0.15s;
-            font-family: inherit;
+            gap: 12px;
         }
 
-        .input-group button:hover {
-            background: #2e8b57;
-            border-color: #3fb950;
-            box-shadow: 0 0 12px #2e8b5770;
-        }
-
-        .shortcut-hint {
-            color: #6e7681;
-            font-size: 0.75rem;
-            margin-top: 8px;
-            margin-left: 10px;
-        }
-
-        /* respuesta tipo snippet */
-        .response-block {
-            padding: 20px 28px;
-            border-bottom: 1px solid #21262d;
-            background: #0a0e14;
-        }
-
-        .response-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #d2a8ff;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .response-header .dot {
-            width: 10px;
-            height: 10px;
-            background: #bb9af7;
-            border-radius: 2px;
-        }
-
-        .code-snippet {
-            background: #1a1f2b;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #2e8b57;
-            font-family: 'Fira Code', monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            line-height: 1.6;
-            color: #e2e8f0;
-            box-shadow: inset 0 0 0 1px #2d3748;
-        }
-
-        /* 🆕 Estilos para fuentes RAG */
-        .rag-sources {
-            margin-top: 15px;
-            padding: 12px;
-            background: #1a1f2b;
-            border-radius: 8px;
-            border-left: 3px solid #bb9af7;
-        }
-
-        .rag-sources-title {
-            color: #bb9af7;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .rag-source-item {
-            font-size: 0.8rem;
-            color: #8b949e;
-            margin-bottom: 5px;
-            padding: 6px;
-            background: #0d1117;
-            border-radius: 6px;
-        }
-
-        .rag-source-name {
-            color: #79c0ff;
-        }
-
-        .rag-similarity {
-            color: #2e8b57;
-        }
-
-        .rag-badge {
-            display: inline-block;
-            background: #2e8b5722;
+        .badge {
+            background: rgba(59, 130, 246, 0.2);
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.7rem;
-            color: #2e8b57;
-            margin-top: 10px;
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.4);
         }
 
-        /* historial estilo log técnico */
-        .history {
-            padding: 24px 28px;
+        /* Dragón */
+        .hero-section {
+            background: linear-gradient(135deg, #0a0f1a 0%, #0f172a 100%);
+            padding: 30px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
         }
 
-        .history h3 {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #f78166;
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-            border-bottom: 1px dashed #3c434d;
-            padding-bottom: 12px;
-        }
-
-        .history-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .history-item {
-            background: #161b22;
-            border: 1px solid #2d333b;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.1s;
-        }
-
-        .history-item:hover {
-            border-color: #4a5a6e;
-        }
-
-        .history-header {
-            background: #1f2937;
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid #323b45;
-        }
-
-        .user-avatar {
-            background: #2e8b57;
-            color: #0d1117;
-            font-weight: bold;
-            width: 28px;
-            height: 28px;
+        .dragon-panel {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            border: 1px solid #3fb950;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
-        .user-question {
-            color: #e6edf3;
-            font-weight: 500;
-            word-break: break-word;
-            flex: 1;
+        .dragon-container {
+            position: relative;
+            cursor: pointer;
         }
 
-        .assistant-response {
-            padding: 18px;
-            background: #0d1117;
-            color: #b1bac4;
-            font-size: 0.95rem;
-            border-left: 4px solid #2e8b57;
-            margin: 0px 10px 10px 10px;
-            border-radius: 0 0 8px 8px;
-            white-space: pre-wrap;
-            font-family: 'Fira Code', monospace;
+        .dragon-svg {
+            width: 180px;
+            height: 180px;
+            filter: drop-shadow(0 10px 20px rgba(59, 130, 246, 0.3));
+            transition: transform 0.3s ease;
         }
 
-        .assistant-response strong {
-            color: #ffa657;
+        .dragon-svg:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes dragonHappy {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes dragonSad {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        @keyframes dragonConfused {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-8deg) scale(0.98); }
+            75% { transform: rotate(8deg) scale(1.02); }
+        }
+
+        @keyframes dragonThinking {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-3deg); }
+            75% { transform: translateY(-5px) rotate(3deg); }
+        }
+
+        .dragon-container.happy .dragon-svg { animation: dragonHappy 0.5s ease-in-out; }
+        .dragon-container.sad .dragon-svg { animation: dragonSad 0.6s ease-in-out; }
+        .dragon-container.confused .dragon-svg { animation: dragonConfused 0.5s ease-in-out; }
+        .dragon-container.thinking .dragon-svg { animation: dragonThinking 1s ease-in-out infinite; }
+
+        .speech-bubble {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            border-radius: 24px;
+            padding: 20px 28px;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 10px 14px 10px 0;
+            border-style: solid;
+            border-color: transparent rgba(59, 130, 246, 0.5) transparent transparent;
+        }
+
+        .dragon-name {
+            color: #60a5fa;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .dragon-message-text {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: #60a5fa;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 3s infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(0) scale(0); }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-30px) scale(1); }
+        }
+
+        /* Formulario */
+        .input-card {
+            background: rgba(15, 23, 42, 0.8);
+            margin: 20px 24px;
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-pro {
+            width: 100%;
+            background: #0f172a;
+            border: 2px solid #1e293b;
+            padding: 16px 20px;
+            border-radius: 20px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .input-pro:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 5px rgba(59, 130, 246, 0.3);
+            transform: scale(1.01);
+        }
+
+        .progress-container {
+            height: 3px;
+            background: #1e293b;
+            border-radius: 3px;
+            margin-top: -12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #3b82f6);
+            background-size: 200%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            animation: gradientMove 2s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 20px;
+            color: white;
             font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .timestamp {
-            color: #6e7681;
-            font-size: 0.7rem;
-            font-family: monospace;
-            white-space: nowrap;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
         }
 
-        .empty-history {
-            color: #6e7681;
-            text-align: center;
-            padding: 40px;
-            font-style: italic;
-            border: 1px dashed #3c434d;
-            border-radius: 8px;
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: rippleAnim 0.6s linear;
+            pointer-events: none;
         }
 
-        /* scroll personalizado */
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .suggestion-chip {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-chip:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+            color: #60a5fa;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* Respuesta - SOLO EL CONTENIDO */
+        .response-card {
+            background: rgba(15, 23, 42, 0.6);
+            margin: 0 24px 20px 24px;
+            padding: 20px;
+            border-radius: 20px;
+            border-left: 4px solid #3b82f6;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .response-content {
+            color: #cbd5e1;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* Historial */
+        .history-section {
+            padding: 0 24px 24px 24px;
+        }
+
+        .history-title {
+            color: #94a3b8;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .history-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .history-item-modern {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            padding: 14px 18px;
+            transition: all 0.2s;
+        }
+
+        .history-item-modern:hover {
+            background: rgba(30, 41, 59, 0.6);
+            transform: translateX(5px);
+        }
+
+        .history-question {
+            color: #60a5fa;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .history-answer {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0d1117;
+            background: #0f172a;
         }
         ::-webkit-scrollbar-thumb {
-            background: #3c434d;
+            background: #3b82f6;
             border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4f5b68;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- barra superior estilo editor -->
-    <div class="status-bar">
-        <div class="status-indicator"></div>
-        <div class="status-text">Asistente activo · modo programador · 🔍 RAG Local</div>
-        <div class="file-tab">📁 RAG Pipeline</div>
-        <div style="color:#6e7681;">❰❰❰ REPL ❱❱❱</div>
-    </div>
-
-    <!-- cabecera -->
-    <div class="header">
-        <h1>
-            🧠 Ayuda de Programación 
-            <span>asistente técnico con RAG</span>
-        </h1>
-        <p>➤ Respuestas basadas en documentos locales + IA. Sistema RAG: recuperación de contexto, búsqueda semántica y generación aumentada.</p>
-    </div>
-
-    <!-- zona de prompt -->
-    <div class="input-area">
-        <div class="prompt-line">
-            <span class="chevron">❯❯</span>
-            <span>$ Plantea tu duda técnica</span>
+    <div class="gradient-header">
+        <div class="logo-area">
+            <span style="font-size: 1.5rem;">🐉</span>
+            <span style="font-weight: 600; color: #e2e8f0;">CodeDragon</span>
+            <span class="badge">RAG + Ollama</span>
         </div>
+        <div class="logo-area">
+            <span class="badge">🔍 Búsqueda semántica</span>
+            <span class="badge">📄 Documentos locales</span>
+        </div>
+    </div>
 
-        <form method="POST">
-            <div class="input-group">
-                <input type="text" name="pregunta" placeholder="Ej: ¿Qué es una variable? ¿Cómo funciona un bucle for?" value="{{ pregunta_actual if pregunta_actual else '' }}" required>
-                <button type="submit">
-                    <span>▶</span> Ejecutar
-                </button>
+    <!-- Dragón -->
+    <div class="hero-section">
+        <div class="dragon-panel">
+            <div class="dragon-container" id="dragonContainer">
+                <svg class="dragon-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="120" rx="50" ry="40" fill="url(#bodyGrad)" stroke="#3b82f6" stroke-width="2"/>
+                    <ellipse cx="100" cy="80" rx="35" ry="30" fill="url(#headGrad)" stroke="#3b82f6" stroke-width="2"/>
+                    <ellipse cx="85" cy="72" rx="8" ry="9" fill="white"/>
+                    <ellipse cx="115" cy="72" rx="8" ry="9" fill="white"/>
+                    <ellipse cx="87" cy="73" rx="4" ry="5" fill="#0f172a"/>
+                    <ellipse cx="117" cy="73" rx="4" ry="5" fill="#0f172a"/>
+                    <circle cx="88" cy="71" r="1.5" fill="white"/>
+                    <circle cx="118" cy="71" r="1.5" fill="white"/>
+                    <path d="M70 55 L60 35 L75 50" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
+                    <path d="M130 55 L140 35 L125 50" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
+                    <path d="M80 55 L90 40 L100 55 L110 40 L120 55" fill="#3b82f6" stroke="#2563eb" stroke-width="1"/>
+                    <path d="M55 100 L20 70 L40 110 L15 120 L55 120" fill="url(#wingGrad)" stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+                    <path d="M145 100 L180 70 L160 110 L185 120 L145 120" fill="url(#wingGrad)" stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+                    <path d="M100 155 Q120 170 110 185 Q105 190 100 188" stroke="#3b82f6" stroke-width="3" fill="none"/>
+                    <circle cx="100" cy="188" r="5" fill="#fbbf24"/>
+                    <path d="M88 90 Q100 100 112 90" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2563eb"/>
+                            <stop offset="100%" stop-color="#1e3a5f"/>
+                        </linearGradient>
+                        <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6"/>
+                            <stop offset="100%" stop-color="#1e40af"/>
+                        </linearGradient>
+                        <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#60a5fa"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="particles" id="particles"></div>
             </div>
-            <div class="shortcut-hint">⏎ Enter para enviar · escribe 'salir' para terminar</div>
-        </form>
+            <div class="speech-bubble" id="speechBubble">
+                <div class="dragon-name">
+                    <span>🐉 CodeDragon</span>
+                    <span style="font-size: 0.7rem; color: #60a5fa;">● En línea</span>
+                </div>
+                <div class="dragon-message-text" id="dragonMessage">
+                    ¡Hola! Soy tu asistente de programación 🐉
+                </div>
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- bloque de respuesta (se muestra si existe) -->
-    {% if respuesta %}
-    <div class="response-block">
-        <div class="response-header">
-            <span class="dot"></span> Respuesta del asistente
+    <!-- Formulario -->
+    <div class="input-card">
+        <form method="POST" id="queryForm">
+            <div class="form-group">
+                <input type="text" name="pregunta" id="questionInput" 
+                       class="input-pro" 
+                       placeholder="Ej: ¿Qué es una variable? ¿Cómo funciona un JOIN en SQL?"
+                       value="{{ pregunta_actual if pregunta_actual else '' }}" 
+                       required>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <button type="submit" class="btn-primary" id="submitBtn">
+                <span>✨</span> Consultar al Dragón
+            </button>
+        </form>
+
+        <div class="suggestions">
+            <span class="suggestion-chip" onclick="setQuestion('¿Qué es RAG en IA?')">🤖 ¿Qué es RAG?</span>
+            <span class="suggestion-chip" onclick="setQuestion('¿Cómo funciona LEFT JOIN en SQL?')">📊 LEFT JOIN SQL</span>
+            <span class="suggestion-chip" onclick="setQuestion('¿Qué es una variable en Python?')">📦 Variables Python</span>
+            <span class="suggestion-chip" onclick="setQuestion('¿Qué es recursividad?')">🔄 Recursividad</span>
+            <span class="suggestion-chip" onclick="setQuestion('Buenas prácticas de programación')">✨ Buenas prácticas</span>
         </div>
-        <div class="code-snippet">
+    </div>
+
+    <!-- Respuesta - SOLO LA RESPUESTA, SIN NINGUNA FUENTE -->
+    {% if respuesta %}
+    <div class="response-card">
+        <div class="response-content">
             {{ respuesta|replace('\n', '<br>')|safe }}
         </div>
-        
-        <!-- 🆕 MOSTRAR FUENTES RAG si existen en la última interacción -->
-        {% if historial and historial[-1].rag_sources %}
-        <div class="rag-sources">
-            <div class="rag-sources-title">
-                📚 Fuentes RAG utilizadas:
-            </div>
-            {% for fuente in historial[-1].rag_sources %}
-            <div class="rag-source-item">
-                📄 <span class="rag-source-name">{{ fuente.source }}</span>
-                <span class="rag-similarity">(relevancia: {{ "%.0f"|format(fuente.similarity * 100) }}%)</span>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="rag-badge">
-            🔍 Respuesta generada con RAG local
-        </div>
-        {% endif %}
+        <!-- No se muestra nada de fuentes RAG -->
     </div>
     {% endif %}
 
-    <!-- historial -->
-    <div class="history">
-        <h3>
-            <span>⏳</span> Historial de consultas
-        </h3>
-        <div class="history-list">
+    <!-- Historial -->
+    <div class="history-section">
+        <div class="history-title">📜 HISTORIAL DE CONSULTAS</div>
+        <div class="history-grid">
             {% if historial %}
-                {% for item in historial %}
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="user-avatar">👤</div>
-                        <div class="user-question">{{ item.usuario }}</div>
-                        <div class="timestamp">{{ item.timestamp if item.timestamp else '' }}</div>
+                {% for item in historial|reverse %}
+                <div class="history-item-modern">
+                    <div class="history-question">
+                        <span>👤</span> {{ item.usuario[:100] }}
+                        <span style="font-size: 0.7rem; margin-left: auto;">{{ item.timestamp }}</span>
                     </div>
-                    <div class="assistant-response">
-                        <strong>asistente:~$</strong> {{ item.respuesta|replace('\n', '<br>')|safe }}
+                    <div class="history-answer">
+                        🐉 {{ item.respuesta[:150] }}{% if item.respuesta|length > 150 %}...{% endif %}
                     </div>
-                    <!-- 🆕 Mostrar fuentes RAG en cada item del historial si existen -->
-                    {% if item.rag_sources %}
-                    <div style="padding: 0 18px 12px 18px;">
-                        <div style="font-size: 0.7rem; color: #bb9af7; margin-bottom: 5px;">📚 Fuentes RAG:</div>
-                        {% for fuente in item.rag_sources %}
-                        <div style="font-size: 0.7rem; color: #6e7681;">
-                            • {{ fuente.source }} ({{ "%.0f"|format(fuente.similarity * 100) }}% relevancia)
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
                 </div>
                 {% endfor %}
             {% else %}
-                <div class="empty-history">
-                    ✨ No hay consultas en el historial. ¡Haz tu primera pregunta!
+                <div style="text-align: center; padding: 40px; color: #5a6e8a;">
+                    ✨ No hay consultas. ¡Hazle una pregunta al Dragón!
                 </div>
             {% endif %}
         </div>
     </div>
-
-    <!-- pie sutil estilo línea de comandos -->
-    <div style="background:#010409; padding: 10px 28px; border-top: 1px solid #2d333b; color:#6e7681; display:flex; gap: 20px; font-size:0.8rem;">
-        <span>⚡ asistente_repl v3.0.0</span>
-        <span>🔷 Gemini 2.5 Flash · RAG Local</span>
-        <span>📚 {{ historial[-1].rag_sources|length if historial and historial[-1].rag_sources else 0 }} fuentes RAG</span>
-        <span style="margin-left:auto;">❯❯❯ listo para más preguntas</span>
-    </div>
 </div>
 
+<script>
+    // Elementos
+    const dragonContainer = document.getElementById('dragonContainer');
+    const dragonMessage = document.getElementById('dragonMessage');
+    const typingIndicator = document.getElementById('typingIndicator');
+    const form = document.getElementById('queryForm');
+    const input = document.getElementById('questionInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const progressBar = document.getElementById('progressBar');
+    const particlesContainer = document.getElementById('particles');
+
+    // Partículas
+    if (particlesContainer) {
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.width = particle.style.height = Math.random() * 5 + 2 + 'px';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            particle.style.animationDuration = Math.random() * 2 + 2 + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    function setDragonState(state, customMessage = null) {
+        if (!dragonContainer || !dragonMessage) return;
+        
+        dragonContainer.classList.remove('happy', 'sad', 'confused', 'thinking');
+        dragonContainer.classList.add(state);
+        
+        const messages = {
+            happy: { msg: '🎉 ¡Genial! Encontré información en mis documentos', emoji: '🐉✨' },
+            sad: { msg: '😔 No encontré eso en mis documentos...', emoji: '🐉😔' },
+            confused: { msg: '🤔 Eso no parece programación...', emoji: '🐉🤔' },
+            thinking: { msg: '💭 Estoy buscando en mis documentos...', emoji: '🐉💭' }
+        };
+        
+        if (customMessage) {
+            dragonMessage.innerHTML = customMessage;
+        } else if (messages[state]) {
+            dragonMessage.innerHTML = messages[state].emoji + ' ' + messages[state].msg;
+        }
+    }
+
+    function showTyping(show) {
+        if (!dragonMessage || !typingIndicator) return;
+        
+        if (show) {
+            dragonMessage.style.display = 'none';
+            typingIndicator.style.display = 'flex';
+            setDragonState('thinking');
+        } else {
+            dragonMessage.style.display = 'block';
+            typingIndicator.style.display = 'none';
+        }
+    }
+
+    // Ripple effect
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function(event) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            const rect = this.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    }
+
+    // Barra de progreso
+    if (input && progressBar) {
+        input.addEventListener('input', function() {
+            let progress = (this.value.length / 100) * 100;
+            progressBar.style.width = Math.min(progress, 100) + '%';
+        });
+    }
+
+    // Shake si está vacío
+    if (form && input) {
+        form.addEventListener('submit', function(e) {
+            if (!input.value.trim()) {
+                e.preventDefault();
+                input.classList.add('shake');
+                setTimeout(() => input.classList.remove('shake'), 300);
+                setDragonState('confused', '❓ Escribe una pregunta primero...');
+                return;
+            }
+            showTyping(true);
+        });
+    }
+
+    // Sugerencias
+    window.setQuestion = function(text) {
+        if (input) {
+            input.value = text;
+            input.focus();
+            const event = new Event('input', { bubbles: true });
+            input.dispatchEvent(event);
+        }
+    };
+
+    // Estado inicial
+    setDragonState('happy', '🐉 ¡Hola! Pregúntame sobre programación');
+</script>
 </body>
 </html>
